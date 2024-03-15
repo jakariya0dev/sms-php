@@ -159,7 +159,7 @@
         <span class="menu-icon">
           <i class="mdi mdi-laptop"></i>
         </span>
-        <span class="menu-title">Feature</span>
+        <span class="menu-title">Achievement</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="achievement-list">
