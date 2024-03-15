@@ -130,12 +130,19 @@
     </li>
 
     <li class="nav-item menu-items">
-      <a class="nav-link" href="feature-all.php">
+      <a class="nav-link" data-bs-toggle="collapse" href="#feature-list" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
-          <i class="mdi mdi-table-large"></i>
+          <i class="mdi mdi-laptop"></i>
         </span>
         <span class="menu-title">Feature</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="feature-list">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="feature-all.php">All Feature</a></li>
+          <li class="nav-item"> <a class="nav-link" href="feature-add.php">Add New Feature</a></li>
+        </ul>
+      </div>
     </li>
 
     <li class="nav-item menu-items">
@@ -148,14 +155,20 @@
     </li>
 
     <li class="nav-item menu-items">
-      <a class="nav-link" href="achievement-all.php">
+      <a class="nav-link" data-bs-toggle="collapse" href="#achievement-list" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
-          <i class="mdi mdi-table-large"></i>
+          <i class="mdi mdi-laptop"></i>
         </span>
-        <span class="menu-title">Achievement</span>
+        <span class="menu-title">Feature</span>
+        <i class="menu-arrow"></i>
       </a>
+      <div class="collapse" id="achievement-list">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="achievement-all.php">All Achievement</a></li>
+          <li class="nav-item"> <a class="nav-link" href="achievement-add.php">Add Achievement</a></li>
+        </ul>
+      </div>
     </li>
-
     
   </ul>
 </nav>

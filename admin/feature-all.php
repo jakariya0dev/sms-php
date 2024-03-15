@@ -7,6 +7,24 @@
   $sql = "SELECT * FROM feature ORDER BY Id DESC";
   $result = mysqli_query($conn, $sql);
 
+
+  // Delete feature 
+
+  if(isset($_POST['id'])){
+
+    $id = $_POST['id'];
+    $sqlToDrop = "DELETE FROM `feature` WHERE id = $id";
+    $resultToDrop = mysqli_query($conn, $sqlToDrop);
+    unlink($_POST['image']);
+    if($resultToDrop){
+      header("Location: {$_SERVER['PHP_SELF']}");
+      echo "<script> alert('Feature Deleted Successfully')";
+    }else{
+      header("Location: {$_SERVER['PHP_SELF']}");
+      echo "<script> alert('Failed to Delete Feature')";
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,19 +56,19 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">All slider List</h4>
-                    <p class="card-description"> Home / Slider / <code>All</code></p>
+                    <h4 class="card-title">All Feature List</h4>
+                    <p class="card-description"> Home / Feature / <code>All</code></p>
                     
-                    <hr class="mb-5">
+                    <hr class="mb-3">
 
                     <?php if ($error): ?>
-                      <div class="alert alert-warning mb-5" role="alert">
+                      <div class="alert alert-warning mb-5 mt-2" role="alert">
                         <h4>You Have Error!</h4> 
                         Failed to Delete!
                       </div>
                     <?php endif; ?>
 
-                    <a href="feature-add.php" class="btn btn-warning p-2">Add New Slider</a>
+                    <a href="feature-add.php" class="btn btn-warning p-2 mb-3">Add New</a>
 
                     <div class="table-responsive">
                       <table class="table table-hover">
@@ -77,6 +95,11 @@
                             
                             <td>
                               <a href="<?php echo 'feature-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
+                              <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>" class="d-inline">
+                                <input type="hidden" value="<?php echo $row['id']?>" name="id">
+                                <input type="hidden" value="<?php echo $row['image']?>" name="image">
+                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                              </form>
                             </td>
                           </tr>
                         <?php $i++; } ?>

@@ -67,7 +67,7 @@
                       </div>
                     <?php endif; ?>
 
-                    <a href="notice-add.php" class="btn btn-warning p-2">Add New Notice</a>
+                    <a href="notice-add.php" class="btn btn-warning p-2">Add New</a>
                     <div class="table-responsive">
                       <table class="table table-hover">
                         <thead>

@@ -105,7 +105,7 @@
                             <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px">
                         </div>
 
-                        <input type="submit" value="Save Notice" name="submit" class="btn btn-primary">
+                        <input type="submit" value="Save Slider" name="submit" class="btn btn-primary">
                     </form>
 
 

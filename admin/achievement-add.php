@@ -9,6 +9,9 @@
         if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
 
             $image_dir = "uploads/achievement/";
+            if(!is_dir($image_dir)){
+              mkdir($image_dir);
+            }
             $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
             // Check valid Image or not
@@ -17,16 +20,16 @@
               return;
             }
 
-            // Upload Slider Image
+            // Upload Achievement Image
             $image_name = time().'.'.$image_ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
 
-            // Seed Slider Data to Database
+            // Seed Achievement Data to Database
             $title = $_POST['title'];
-            $subtitle = $_POST['subtitle'];
+            $description = $_POST['description'];
             $image = $image_dir.$image_name;
 
-            $sql = "INSERT INTO `achievement`(`title`, `subtitle`, `image`) VALUES ('$title','$subtitle','$image')";
+            $sql = "INSERT INTO `achievement`(`title`, `description`, `image`) VALUES ('$title','$description','$image')";
 
             $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
@@ -92,8 +95,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label>Achievement Subtitle</label>
-                            <input name="subtitle" type="text" class="form-control form-control-lg" required>
+                            <label>Achievement description</label>
+                            <input name="description" type="text" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="form-group mb-4">
@@ -105,7 +108,7 @@
                             <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px">
                         </div>
 
-                        <input type="submit" value="Save Notice" name="submit" class="btn btn-primary">
+                        <input type="submit" value="Save" name="submit" class="btn btn-primary">
                     </form>
 
 

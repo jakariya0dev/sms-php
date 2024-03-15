@@ -1,3 +1,10 @@
+<?php 
+
+    $sql = "SELECT * FROM slider";
+    $result = mysqli_query($conn, $sql);
+
+?>
+
 <section id="slider">
         
 
@@ -5,45 +12,26 @@
     <div class="row">
         <div class="col-md-12">
             <div id="carouselExampleCaptions" class="carousel slide">
+                
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                    <?php for($i = 1; $i <= mysqli_num_rows($result); $i++): ?>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $i ?>"></button>
+                    <?php endfor; ?>
                 </div>
+
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://picsum.photos/id/11/1200/300" class="d-block w-100 h-100" alt="..." />
+                    
+
+                    <?php $i=1; while($row = mysqli_fetch_assoc($result)): ?>
+                    <div class="carousel-item <?php echo $i==1 ? 'active' : ''; $i++; ?>">
+                        <img src="<?php echo './../admin/'.$row['image'] ?>" class="d-block w-100 h-100"/>
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>
-                                Some representative placeholder content for the first
-                                slide.
-                            </p>
+                            <h5><?php echo $row['title'] ?></h5>
+                            <p><?php echo $row['subtitle'] ?></p>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/id/13/1200/300" class="d-block w-100 h-100" alt="..." />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>
-                                Some representative placeholder content for the second
-                                slide.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/id/14/1200/300" class="d-block w-100 h-100" alt="..." />
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>
-                                Some representative placeholder content for the third
-                                slide.
-                            </p>
-                        </div>
-                    </div>
+                    <?php endwhile; ?>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                     data-bs-slide="prev">

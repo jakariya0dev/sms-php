@@ -1,6 +1,7 @@
 <?php 
 
-$host = $_SERVER["SERVER_NAME"];
+// $host = $_SERVER["SERVER_NAME"];
+$host = 'localhost';
 $user = "root";
 $password = "";
 $db = "sms-php";

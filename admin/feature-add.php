@@ -17,7 +17,7 @@
               return;
             }
 
-            // Upload Slider Image
+            // Upload Feature Image
             $image_name = time().'.'.$image_ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
 
@@ -102,10 +102,10 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <img id="previewImage" src="<?php echo $data['image'] ?? "" ?>" alt="feature-image" class="img-fluid" style="height: 100px; width: 150px">
+                            <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px; display: inline-block">
                         </div>
 
-                        <input type="submit" value="Save Notice" name="submit" class="btn btn-primary">
+                        <input type="submit" value="Save Feature" name="submit" class="btn btn-primary">
                     </form>
 
 

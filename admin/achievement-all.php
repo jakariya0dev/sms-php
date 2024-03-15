@@ -7,6 +7,23 @@
   $sql = "SELECT * FROM achievement ORDER BY Id DESC";
   $result = mysqli_query($conn, $sql);
 
+    // Delete feature 
+
+  if(isset($_POST['id'])){
+
+    $id = $_POST['id'];
+    $sqlToDrop = "DELETE FROM `achievement` WHERE id = $id";
+    $resultToDrop = mysqli_query($conn, $sqlToDrop);
+    unlink($_POST['image']);
+    if($resultToDrop){
+      header("Location: {$_SERVER['PHP_SELF']}");
+      echo "<script> alert('Achievement Deleted Successfully')";
+    }else{
+      header("Location: {$_SERVER['PHP_SELF']}");
+      echo "<script> alert('Failed to Delete Achievement')";
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +55,12 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">All slider List</h4>
-                    <p class="card-description"> Home / Slider / <code>All</code></p>
+                    <h4 class="card-title">All Achievement List</h4>
+                    <p class="card-description"> Home / Achievement / <code>All</code></p>
                     
-                    <hr class="mb-5">
+                    <hr class="mb-3">
 
-                    <a href="achievement-add.php" class="btn btn-warning p-2">Add New Achievement</a>
+                    <a href="achievement-add.php" class="btn btn-warning p-2 mb-3">Add New</a>
 
                     <div class="table-responsive">
                       <table class="table table-hover">
@@ -70,6 +87,11 @@
                             
                             <td>
                               <a href="<?php echo 'achievement-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
+                              <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
+                                  <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                                  <input type="hidden" name="image" value="<?php echo $row['image']?>">
+                                  <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                              </form>
                             </td>
                           </tr>
                         <?php $i++; } ?>

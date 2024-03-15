@@ -19,7 +19,7 @@
         // getting data from input field
         $id = $_POST['id'];
         $title = $_POST['title'];
-        $subtitle = $_POST['subtitle'];
+        $description = $_POST['description'];
         $image = $_POST['old_image'];
 
         // check, has image? 
@@ -45,7 +45,7 @@
 
         }
 
-        $sql = "UPDATE `achievement` SET `title`='$title',`subtitle`='$subtitle',`image`='$image' WHERE id = $id";
+        $sql = "UPDATE `achievement` SET `title`='$title',`description`='$description',`image`='$image' WHERE id = $id";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
@@ -102,8 +102,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label>Achievement Subtitle</label>
-                            <input name="subtitle" type="text" class="form-control form-control-lg" value="<?php echo $data['subtitle'] ?>" required>
+                            <label>Achievement description</label>
+                            <input name="description" type="text" class="form-control form-control-lg" value="<?php echo $data['description'] ?>" required>
                         </div>
 
                         <div class="form-group">

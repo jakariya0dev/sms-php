@@ -69,7 +69,7 @@
                       </div>
                     <?php endif; ?>
 
-                    <a href="slider-add.php" class="btn btn-warning p-2">Add New Slider</a>
+                    <a href="slider-add.php" class="btn btn-warning p-2">Add New</a>
 
                     <div class="table-responsive">
                       <table class="table table-hover">

@@ -7,25 +7,26 @@
 <div class="notice-board mb-5" data-aos="zoom-in">
     <p class="sidebar-header">নোটিশ বোর্ড</p>
 
-    <?php 
-        if(mysqli_num_rows($result) > 0){
+    <?php if(mysqli_num_rows($result) > 0) : ?>
         
-        while($row = mysqli_fetch_assoc($result)){
-        
-    ?>
-    <div class="notice-item bg-secondary-subtle d-flex justify-content-between bg-white p-2 mb-1">
-        <div>
-            <p class="mb-0"><?php echo $row['title']?></p>
-            <p class="mb-0 text-black-50"><?php echo $row['date']?></p>
-        </div>
-    </div>
+        <?php    while($row = mysqli_fetch_assoc($result)): ?>
+            
+            <div class="notice-item bg-secondary-subtle d-flex justify-content-between bg-white p-2 mb-1">
+                <div>
+                    <p class="mb-0"><?php echo $row['title']?></p>
+                    <p class="mb-0 text-black-50"><?php echo $row['date']?></p>
+                </div>
+            </div>
 
-    <?php 
-        }
-        }else{ 
-        echo "No notice found";
-        }                       
-    ?>
+        <?php endwhile; ?>
+    <?php else: ?>
+            <div class="notice-item bg-secondary-subtle d-flex justify-content-between bg-white p-2 mb-1">
+                <div>
+                    <p class="mb-0">No Notice Found</p>
+                    <p class="mb-0 text-black-50">There is no notice. add new notice</p>
+                </div>
+            </div>
+    <?php endif; ?>
 </div>
 
                     <p class="sidebar-header" data-aos="zoom-in">শিক্ষার্থী কর্নার</p>
