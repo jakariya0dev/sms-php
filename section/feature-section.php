@@ -8,7 +8,6 @@
 ?>
 
 <p class="title">প্রতিষ্ঠানের বৈশিষ্ট্য</p>
-<div class="h-rule"></div>
 
 <div class="row gx-5">
     <div class="col-md-6">

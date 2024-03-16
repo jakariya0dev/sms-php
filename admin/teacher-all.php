@@ -67,7 +67,7 @@
                       </div>
                     <?php endif; ?>
 
-                    <a href="notice-add.php" class="btn btn-warning p-2">Add New</a>
+                    <a href="teacher-add.php" class="btn btn-warning p-2">Add New</a>
                     <div class="table-responsive">
                       <table class="table table-hover">
                         <thead>
@@ -91,13 +91,13 @@
                             <td><?php echo $i ?></td>
                             <td><?php echo $row['name'] ?></td>
                             <td><?php echo $row['designation'] ?></td>
-                            <td> <img src="<?php echo $row['picture'] ?>" alt="pro-pic"> </td>
+                            <td> <img src="<?php echo $row['image'] ?>" alt="pro-pic"> </td>
                             
                             <td>
                               <a href="<?php echo 'teacher-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
                               <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
                                 <input type="hidden" name="t_id" value="<?php echo $row['id']?>">
-                                <input type="hidden" name="t_picture" value="<?php echo $row['picture']?>">
+                                <input type="hidden" name="t_picture" value="<?php echo $row['image']?>">
                                 <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
                               </form>
                             </td>

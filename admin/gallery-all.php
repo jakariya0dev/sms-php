@@ -5,6 +5,26 @@
   $sql = "SELECT * FROM gallery ORDER BY Id DESC";
   $result = mysqlI_query($conn, $sql);
 
+  if(isset($_POST["delete_btn"])){
+
+    $id = $_POST["id"];
+    $sql = "DELETE FROM `gallery` WHERE id = $id";
+
+    if(file_exists($_POST['image'])){
+      unlink($_POST['image']);
+    }
+
+    $result = mysqli_query($conn, $sql);
+
+    if($result){
+      header("Location: gallery-all.php");
+    }
+    else{
+      echo "<script>alert('Failed to Delete')</script>";
+    }
+
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -36,17 +56,18 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">All Teacher List</h4>
-                    <p class="card-description"> Home / Teacher / <code>All</code></p>
+                    <h4 class="card-title">All Gallery Photo</h4>
+                    <p class="card-description"> Home / Gallery / <code>All</code></p>
                     
                     <hr class="mb-5">
 
-                    <a href="notice-add.php" class="btn btn-warning p-2">Add New</a>
+                    <a href="gallery-add.php" class="btn btn-warning p-2 mb-3">Add New</a>
                     <div class="table-responsive">
-                      <table class="table table-hover">
+                      <table class="table">
                         <thead>
                           <tr>
                             <th>SL No.</th>
+                            <th>Title</th>
                             <th>Picture</th>
                             <th>Action</th>
                           </tr>
@@ -59,9 +80,15 @@
                         ?>
                           <tr>
                             <td><?php echo $i ?></td>
+                            <td><?php echo $row['title'] ?></td>
                             <td> <img src="<?php echo $row['image'] ?>" alt="pro-pic"> </td>
                             <td>
-                              <a href="<?php echo 'gallery-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
+                              <a href="<?php echo 'gallery-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i>Edit</a>
+                              <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                                <input type="hidden" name="image" value="<?php echo $row['image']?>">
+                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i>Delete</button>
+                              </form>
                             </td>
                           </tr>
                         <?php $i++; } ?>

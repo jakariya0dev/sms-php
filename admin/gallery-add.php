@@ -9,6 +9,7 @@
         if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
 
             $image_dir = "uploads/gallery/";
+            $title = $_POST['title'];
 
             if(!is_dir($image_dir))
             {
@@ -31,7 +32,7 @@
 
             $image = $image_dir.$image_name;
             
-            $sql = "INSERT INTO `gallery`(`image`) VALUES ('$image')";
+            $sql = "INSERT INTO `gallery`(`title`, `image`) VALUES ('$title', '$image')";
 
             $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
@@ -79,7 +80,7 @@
                 <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Add New Teacher</h4>
+                    <h4 class="card-title">Add New Gallery</h4>
                     
                     <p class="card-description"> Home / Gallery /<code>New</code> </p>
                     
@@ -95,6 +96,11 @@
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group mb-4">
+                            <label>Image Title</label>
+                            <input name="title" type="text" class="form-control form-control-lg" Required>
+                        </div>
+
+                        <div class="form-group mb-4">
                             <label>Gallery Image</label>
                             <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
                         </div>
@@ -103,7 +109,7 @@
                             <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px">
                         </div>
 
-                        <input type="submit" value="Save Image" name="submit" class="btn btn-primary">
+                        <input type="submit" value="Save" name="submit" class="btn btn-primary">
                     </form>
 
                   </div>

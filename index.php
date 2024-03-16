@@ -16,44 +16,45 @@
     </head>
 
     <body>
+        
+        <div style="width: 75%; margin:auto">
+            <div class="container-fluid bg-white">
 
-        <div class="container bg-white">
+                <!-- Header with Nav Start -->
+                <?php include_once './section/header-section.php' ?>
+                <!-- Header with Nav End -->
 
-            <!-- Header with Nav Start -->
-            <?php include_once './section/header-section.php' ?>
-            <!-- Header with Nav End -->
+                <!-- Banner Slider Start -->
+                <?php include_once './section/banner-slider.php' ?>
+                <!-- Banner Slider End -->
 
-            <!-- Banner Slider Start -->
-            <?php include_once './section/banner-slider.php' ?>
-            <!-- Banner Slider End -->
-
-            <div class="row">
-                <div class="col-md-9">
-                    <?php include_once './section/about-us.php' ?>
-                    <?php include_once './section/speech-section.php' ?>
-                    <?php include_once './section/feature-section.php' ?>
-                    <?php include_once './section/achievement.php' ?>
+                <div class="row">
+                    <div class="col-md-9">
+                        <?php include_once './section/about-us.php' ?>
+                        <?php include_once './section/speech-section.php' ?>
+                        <?php include_once './section/feature-section.php' ?>
+                        <?php include_once './section/achievement.php' ?>
+                    </div>
+                    <div class="col-md-3">
+                        <?php include_once './section/sidebar-right.php' ?>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <?php include_once './section/sidebar-right.php' ?>
-                </div>
+
+                <!-- Photo Gallery Start -->
+                <?php include_once './section/photo-gallery.php' ?>
+                <!-- Photo Gallery End -->
+
+                <!-- Team Section START  -->
+                <?php include_once './section/teacher-slider.php' ?>
+                <!-- Team Section END  -->
+
+                <!-- Footer Section START  -->
+                <?php include_once './section/footer-section.php' ?>
+                <!-- Footer Section END  
+
             </div>
-
-            <!-- Photo Gallery Start -->
-            <?php include_once './section/photo-gallery.php' ?>
-            <!-- Photo Gallery End -->
-
-            <!-- Team Section START  -->
-            <?php include_once './section/teacher-slider.php' ?>
-            <!-- Team Section END  -->
-
-            <!-- Achievements Start -->
-            <?php include_once './section/achievement.php' ?>
-            <!-- Achievements End -->
-
         </div>
-        
-        
+  
         <?php include_once './section/footer-links.php' ?>
 
     </body>

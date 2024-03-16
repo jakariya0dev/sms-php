@@ -1,7 +1,7 @@
     <section>
         <header>
             <div class="banner-top">
-                <img src="./imgs/banner.jpg" alt="" class="img-fluid" />
+                <img src="./images/banner.jpg" alt="" class="img-fluid" />
             </div>
             <nav class="navbar navbar-expand-lg bg-primary-dark sticky-top">
                 <div>

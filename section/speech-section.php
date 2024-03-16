@@ -11,7 +11,6 @@
 ?>
 
 <p class="title">সভাপতির বাণী</p>
-<div class="h-rule"></div>
 
 <div class="speech-item">
     <div class="row">
@@ -31,7 +30,6 @@
 </div>
 
 <p class="title">অধ্যক্ষ্যের বাণী</p>
-<div class="h-rule"></div>
 
 <div class="speech-item">
     <div class="row">

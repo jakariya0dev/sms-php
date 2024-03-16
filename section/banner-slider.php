@@ -49,17 +49,18 @@
     <!-- Slider End -->
 
     <!-- Breaking News Start-->
-    <div class="bg-primary-dark text-white my-3 px-2">
-        <div class="row">
-            <div class="col-auto pt-2">বিশেষ বিজ্ঞপ্তিঃ</div>
-            <div class="col w-100 pt-2">
-                <marquee behavior="" direction="">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-auto d-inline-block pt-2" style="background-color: ; font-weight: bold;">বিশেষ বিজ্ঞপ্তি</div>
+            <div class="col pt-2 grey-light">
+                <marquee>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Soluta blanditiis optio non eveniet id, perferendis quam, at
                     officiis et facilis quisquam earum exercitationem accusamus eos
-                    nesciunt natus nobis aut tenetur!</marquee>
+                    nesciunt natus nobis aut tenetur!
+                </marquee>
             </div>
         </div>
     </div>
     <!-- Breaking News End-->
        
-    </section>
+</section>

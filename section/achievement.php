@@ -7,11 +7,10 @@
 ?>
 
 <section id="achievements">
-        <div class="container bg-white" data-aos="fade-up">
+        
             <p class="title">আমাদের অর্জন</p>
-            <div class="h-rule"></div>
 
-            <div class="row">
+            <div class="row" data-aos="fade-up">
                 <div class="col-md-6">
                     <div class="achievement-img">
                         <img id="achievementImage" class="img-fluid w-100 h-100" src="<?php echo 'admin/'.mysqli_fetch_assoc($achievement)['image'] ?>" alt="" />
@@ -38,7 +37,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <script>

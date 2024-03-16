@@ -18,7 +18,8 @@
     if(isset($_POST['update_btn'])){
 
         // getting data from input field
-        $id = $_POST['n_id'];
+        $id = $_POST['id'];
+        $title = $_POST['title'];
         $image = $_POST['old_image'];
 
         // check, has image? 
@@ -46,7 +47,7 @@
 
         
 
-        $sql = "UPDATE `gallery` SET `image`='$image' WHERE id = $id";
+        $sql = "UPDATE `gallery` SET `title` = '$title', `image`='$image' WHERE id = $id";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
@@ -97,6 +98,11 @@
                     
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
                         
+                        <div class="form-group mb-5">
+                            <label>Image Title</label>
+                            <input name="title" type="text" class="form-control form-control-lg" value="<?php echo $data['title'] ?>">
+                        </div>
+
                         <div class="form-group">
                             <label>Gallery Image</label>
                             <input name="old_image" value="<?php echo $data['image'] ?>" type="hidden">
@@ -104,7 +110,7 @@
                             <img class="img-fluid mt-3 mb-3" id="previewImage" src="<?php echo $data['image'] ?>" style="height: 100px; width: 150px">
                         </div>
                         
-                        <input type="hidden" name="n_id" value="<?php echo $data['id'] ?>">
+                        <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">
                     </form>
 

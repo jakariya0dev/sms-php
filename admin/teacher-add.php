@@ -27,7 +27,7 @@
             $t_phone = $_POST['t_phone'];
             $t_picture = $pro_pic_dir.$pro_pic_name;
             
-            $sql = "INSERT INTO `teacher`(`name`, `designation`, `phone`, `picture`) VALUES ('$t_name','$t_designation','$t_phone','$t_picture')";
+            $sql = "INSERT INTO `teacher`(`name`, `designation`, `phone`, `image`) VALUES ('$t_name','$t_designation','$t_phone','$t_picture')";
 
             $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
@@ -109,14 +109,14 @@
 
                         <div class="form-group mb-4">
                             <label>Teacher Picture</label>
-                            <input name="t_picture" type="file" class="form-control form-control-lg">
+                            <input id="inputImage" name="t_picture" type="file" class="form-control form-control-lg">
                         </div>
 
                         <div class="form-group mb-4">
-                            <img id="previewImage" src="<?php echo $data['image'] ?>" alt="teacher-image" class="img-fluid" style="height: 100px; width: 150px">
+                            <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px">
                         </div>
 
-                        <input type="submit" value="Save Teacher" name="submit" class="btn btn-primary">
+                        <input type="submit" value="Save" name="submit" class="btn btn-primary">
                     </form>
 
                   </div>
