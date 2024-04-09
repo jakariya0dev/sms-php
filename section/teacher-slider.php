@@ -3,7 +3,6 @@
     $sql4teacher = "SELECT * FROM `teacher`";
 
     $teacher = mysqli_query($conn, $sql4teacher);
-
     
 ?>
 <section>

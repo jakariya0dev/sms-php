@@ -13,10 +13,10 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="#">হোম</a>
+                                <a class="nav-link active text-white" aria-current="page" href="index.php">হোম</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">প্রতিষ্ঠান সম্পর্কে</a>
+                                <a class="nav-link text-white" href="page-about.php">প্রতিষ্ঠান সম্পর্কে</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="#">বাণী</a>
@@ -27,7 +27,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#">শিক্ষক মণ্ডলী</a>
+                                <a class="nav-link text-white" href="teacher-list.php">শিক্ষক মণ্ডলী</a>
                             </li>
 
                             <li class="nav-item">

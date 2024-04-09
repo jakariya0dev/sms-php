@@ -80,7 +80,10 @@
                         ?>
                           <tr>
                             <td><?php echo $i ?></td>
-                            <td><?php echo $row['title'] ?></td>
+                            <!-- <td><?php echo $row['title'] ?></td> -->
+
+                            
+                            <td><?php echo substr($row['title'], 0, 120)  ?></td>
                             <td><?php echo $row['date'] ?></td>
                             
                             <td>

@@ -56,6 +56,8 @@
     <li class="nav-item nav-category">
       <span class="nav-link">Navigation</span>
     </li>
+
+
     <li class="nav-item menu-items">
       <a class="nav-link" href="index.html">
         <span class="menu-icon">
@@ -95,6 +97,15 @@
           <li class="nav-item"> <a class="nav-link" href="notice-add.php">Add New Notice</a></li>
         </ul>
       </div>
+    </li>
+
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="about.php">
+        <span class="menu-icon">
+          <i class="mdi mdi-speedometer"></i>
+        </span>
+        <span class="menu-title">About Us</span>
+      </a>
     </li>
 
     <li class="nav-item menu-items">

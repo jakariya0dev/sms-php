@@ -50,7 +50,7 @@
 
                 <!-- Footer Section START  -->
                 <?php include_once './section/footer-section.php' ?>
-                <!-- Footer Section END  
+                <!-- Footer Section END  -->
 
             </div>
         </div>

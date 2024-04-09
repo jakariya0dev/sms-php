@@ -2,45 +2,42 @@
 
     include_once 'config.php';
 
-    if(isset($_GET['id'])){
+  
+    $sql = "SELECT * FROM about WHERE id = 1";
 
-        $n_id = $_GET['id'];
-        $sql = "SELECT * FROM notice WHERE id = $n_id";
+    $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+    $data = mysqli_fetch_assoc($result);
 
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-        $data = mysqli_fetch_assoc($result);
 
-    }
 
 
     if(isset($_POST['update_btn'])){
 
-        $n_id = $_POST['n_id'];
-        $n_title = $_POST['n_title'];
-        $n_description = $_POST['n_description'];
-        $n_file = $_POST['n_file'];
-        $n_date = $_POST['n_date'];
+        
+        $image = $_POST['old_image'];
+        $description = $_POST['description'];
 
-        if(isset($_FILES['n_file']['name'])){
+        if(isset($_FILES['image']['name'])){
 
-          $dir_name = 'uploads/notice/';
+          $dir_name = 'uploads/about/';
           if (!file_exists($dir_name)) { mkdir($dir_name, 0755, true); }
-          $file_name = time() .'.'. pathinfo( $_FILES['$n_file']['name'], PATHINFO_EXTENSION );
-          move_uploaded_file($_FILES['$n_file']['tmp_name'], $dir_name.$file_name);
+          $file_name = time() .'.'. pathinfo( $_FILES['image']['name'], PATHINFO_EXTENSION );
+          move_uploaded_file($_FILES['image']['tmp_name'], $dir_name.$file_name);
           if(file_exists($_POST['old_file'])){
             unlink($_POST['old_file']);
           }
-          $n_file = $file_name;
+
+          $image = $dir_name.$file_name;
 
         }
 
         
 
-        $sql = "UPDATE `notice` SET `title`='$n_title',`description`='$n_description',`date`='$n_date',`link`='$n_file' WHERE id = $n_id";
+        $sql = "UPDATE `about` SET `description`='$description', `image`='$image' WHERE id = 1";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
-            header("Location: notice-all.php");
+            header("Location: about.php");
         }
         else{
             echo "<script>Update Added Failed </script>";
@@ -78,37 +75,30 @@
                 <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Update Notice</h4>
+                    <h4 class="card-title">Update About Description</h4>
                     
-                    <p class="card-description"> Home / Notice /<code>Edit</code> </p>
+                    <p class="card-description"> Home / Description /<code>Edit</code> </p>
                     
                     <hr class="mb-5">
 
                     
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-                    
-                        <div class="form-group">
-                            <label>Notice Title</label>
-                            <input name="n_title" type="text" class="form-control form-control-lg" value="<?php echo $data['title'] ?>" required>
-                        </div>
                         
                         <div class="form-group">
-                            <label>Notice Description</label>
-                            <textarea name="n_description" class="form-control" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
+                            <label>Description</label>
+                            <textarea name="description" class="form-control" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Notice File</label>
-                            <input name="old_file" type="hidden" value="<?php echo $data['file'] ?>">
-                            <input name="n_file" type="file" class="form-control form-control-lg">
+                            <input name="old_image" type="hidden" value="<?php echo $data['image'] ?>">
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
                         </div>
 
-                        <div class="form-group">
-                            <label>Notice Date</label>
-                            <input name="n_date" type="date" class="form-control form-control-lg" value="<?php echo $data['date'] ?>" required>
+                        <div class="form-group mb-4">
+                            <img id="previewImage" src="<?php echo $data['image'] ?>" class="img-fluid" style="height: 100px; width: 150px; display: inline-block">
                         </div>
-                        
-                        <input type="hidden" name="n_id" value="<?php echo $data['id'] ?>">
+
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">
                     </form>
 

@@ -5,6 +5,7 @@
 
     $president = mysqli_query($conn, $president_sql) or die(mysqli_error($conn));
     $president = mysqli_fetch_assoc($president);
+    
     $principal = mysqli_query($conn, $principal_sql) or die(mysqli_error($conn));
     $principal = mysqli_fetch_assoc($principal);
 
@@ -24,6 +25,9 @@
         <div class="col-8">
             <div class="speech-content">
                 <p> <?php echo $president['speech'] ?> </p>
+                <div class="see-more">
+                    <p class=""><a class="text-decoration-none" href="page-speech.php">বিস্তারিত পড়ুন</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -43,6 +47,10 @@
         <div class="col-8">
             <div class="speech-content">
                 <p> <?php echo $principal['speech'] ?> </p>
+                
+                <div class="see-more">
+                    <p class=""><a class="text-decoration-none" href="page-speech.php">বিস্তারিত পড়ুন</a></p>
+                </div>
             </div>
         </div>
     </div>

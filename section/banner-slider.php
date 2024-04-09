@@ -11,7 +11,7 @@
     <!-- Slider Start -->
     <div class="row">
         <div class="col-md-12">
-            <div id="carouselExampleCaptions" class="carousel slide">
+            <div id="carouselExampleCaptions" class="carousel slide carousel-fade bg-primary" data-bs-ride="carousel">
                 
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true"></button>
@@ -25,9 +25,9 @@
 
                     <?php $i=1; while($row = mysqli_fetch_assoc($result)): ?>
                     <div class="carousel-item <?php echo $i==1 ? 'active' : ''; $i++; ?>">
-                        <img src="<?php echo './../admin/'.$row['image'] ?>" class="d-block w-100 h-100"/>
+                        <img src="<?php echo './../admin/'.$row['image'] ?>" class="d-block w-100 h-100 banner-img"/>
                         <div class="carousel-caption d-none d-md-block">
-                            <h5><?php echo $row['title'] ?></h5>
+                            <h2><?php echo $row['title'] ?></h5>
                             <p><?php echo $row['subtitle'] ?></p>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
     <!-- Breaking News Start-->
     <div class="container">
         <div class="row my-3">
-            <div class="col-auto d-inline-block pt-2" style="background-color: ; font-weight: bold;">বিশেষ বিজ্ঞপ্তি</div>
+            <div class="col-auto d-inline-block pt-2 breaking-title">বিশেষ বিজ্ঞপ্তি</div>
             <div class="col pt-2 grey-light">
                 <marquee>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Soluta blanditiis optio non eveniet id, perferendis quam, at

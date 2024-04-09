@@ -6,10 +6,10 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['t_picture']['tmp_name']) && $_FILES['t_picture']['size'] < 2*1024*1024 ){
+        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
 
             $pro_pic_dir = "uploads/teacher/";
-            $pro_pic_ext = pathinfo($_FILES["t_picture"]["name"], PATHINFO_EXTENSION);
+            $pro_pic_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
             // Check valid Image or not
             if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png'])){
@@ -19,15 +19,28 @@
 
             // Upload Profile Picture
             $pro_pic_name = time().'.'.$pro_pic_ext;
-            move_uploaded_file($_FILES['t_picture']['tmp_name'], $pro_pic_dir.$pro_pic_name);
+            move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
 
             // Seed Teacher Data to Database
-            $t_name = $_POST['t_name'];
-            $t_designation = $_POST['t_designation'];
-            $t_phone = $_POST['t_phone'];
-            $t_picture = $pro_pic_dir.$pro_pic_name;
+            $name = $_POST['name'];
+            $designation = $_POST['designation'];
+            $phone = $_POST['phone'];
+            $image = $pro_pic_dir.$pro_pic_name;
+            $email = $_POST['email'];
+            $index_number = $_POST['index_number'];
+            $qualification = $_POST['qualification'];
+            $department = $_POST['department'];
+            $blood_group = $_POST['blood_group'];
+            $birth_date = $_POST['birth_date'];
+            $joining_date = $_POST['joining_date'];
+            $present_address = $_POST['present_address'];
+            $permanent_address = $_POST['permanent_address'];
             
-            $sql = "INSERT INTO `teacher`(`name`, `designation`, `phone`, `image`) VALUES ('$t_name','$t_designation','$t_phone','$t_picture')";
+            $sql = "INSERT INTO `teacher`(`name`, `designation`, `phone`, `image`, `email`, `index_number`, `qualification`, `department`, `blood_group`, `birth_date`, `joining_date`, `present_address`, `permanent_address`) VALUES ('$name', '$designation', '$phone', '$image', '$email', '$index_number', '$qualification', '$department', '$blood_group', '$birth_date', '$joining_date', '$present_address', '$permanent_address');";
+
+            // print($sql);
+
+            // die();
 
             $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
@@ -93,23 +106,78 @@
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
 
                         <div class="form-group mb-4">
-                            <label>Teacher Name</label>
-                            <input name="t_name" type="text" class="form-control form-control-lg" required>
+                            <label>Name:</label>
+                            <input name="name" type="text" class="form-control form-control-lg" required>
                         </div>
                         
                         <div class="form-group mb-4">
-                            <label>Teacher Designation</label>
-                            <input name="t_designation" type="text" class="form-control form-control-lg" required>
+                            <label>Designation:</label>
+                            <input name="designation" type="text" class="form-control form-control-lg" required>
                         </div>
 
                         <div class="form-group mb-4">
-                            <label>Teacher Phone</label>
-                            <input name="t_phone" type="text" class="form-control form-control-lg" required>
+                            <label>Phone Number:</label>
+                            <input name="phone" type="text" class="form-control form-control-lg" required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Email Address:</label>
+                            <input name="email" type="email" class="form-control form-control-lg">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Index Number:</label>
+                            <input name="index_number" type="text" class="form-control form-control-lg">
+                        </div>
+                        
+                        <div class="form-group mb-4">
+                            <label>Qualification:</label>
+                            <input name="qualification" type="text" class="form-control form-control-lg">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Department:</label>
+                            <input name="department" type="text" class="form-control form-control-lg">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Blood Group:</label>
+                            <select id="select" class="form-control" name="blood_group">
+                                <option value="">Select Blood Group</option>
+                                <option value="A+ve">A+ve</option>
+                                <option value="A-ve">A-ve</option>
+                                <option value="B+ve">B+ve</option>
+                                <option value="B-ve">B-ve</option>
+                                <option value="O+ve">O+ve</option>
+                                <option value="O-ve">O-ve</option>
+                                <option value="AB+ve">AB+ve</option>
+                                <option value="AB-ve">AB-ve</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Birth Date:</label>
+                            <input name="birth_date" type="date" class="form-control form-control-lg">
+                        </div>
+                        
+                        <div class="form-group mb-4">
+                            <label>Joining Date:</label>
+                            <input name="joining_date" type="date" class="form-control form-control-lg">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Present Address:</label>
+                            <input name="present_address" type="text" class="form-control form-control-lg">
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Permanent Address:</label>
+                            <input name="permanent_address" type="text" class="form-control form-control-lg">
                         </div>
 
                         <div class="form-group mb-4">
                             <label>Teacher Picture</label>
-                            <input id="inputImage" name="t_picture" type="file" class="form-control form-control-lg">
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
                         </div>
 
                         <div class="form-group mb-4">
