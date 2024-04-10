@@ -95,6 +95,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="notice-all.php">All Notice</a></li>
           <li class="nav-item"> <a class="nav-link" href="notice-add.php">Add New Notice</a></li>
+          <li class="nav-item"> <a class="nav-link" href="notice-scroll.php">Scrolling Notice</a></li>
         </ul>
       </div>
     </li>
@@ -188,5 +189,16 @@
       </div>
     </li>
     
+    <!-- Contact -->
+
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="about.php">
+        <span class="menu-icon">
+          <i class="mdi mdi-speedometer"></i>
+        </span>
+        <span class="menu-title">Contact</span>
+      </a>
+    </li>
+
   </ul>
 </nav>

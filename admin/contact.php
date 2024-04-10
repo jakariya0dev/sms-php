@@ -3,39 +3,25 @@
     include_once 'config.php';
 
   
-    $sql = "SELECT * FROM about WHERE id = 1";
+    $sql = "SELECT * FROM contact WHERE id = 1";
 
     $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
     $data = mysqli_fetch_assoc($result);
 
+
+
+
     if(isset($_POST['update_btn'])){
 
-        
-        $name = $_POST['name'];
-        $image = $_POST['old_image'];
-        $description = $_POST['description'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $map = $_POST['map'];
 
-        if(isset($_FILES['image']['name'])){
-
-          $dir_name = 'uploads/about/';
-          if (!file_exists($dir_name)) { mkdir($dir_name, 0755, true); }
-          $file_name = time() .'.'. pathinfo( $_FILES['image']['name'], PATHINFO_EXTENSION );
-          move_uploaded_file($_FILES['image']['tmp_name'], $dir_name.$file_name);
-          if(file_exists($_POST['old_file'])){
-            unlink($_POST['old_file']);
-          }
-
-          $image = $dir_name.$file_name;
-
-        }
-
-        
-
-        $sql = "UPDATE `about` SET `name`='$name', `description`='$description', `image`='$image' WHERE id = 1";
+        $sql = "UPDATE `contact` SET `phone`='$phone', `email`='$email', `map`='$map' WHERE id = 1";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
-            header("Location: about.php");
+            header("Location: contact.php");
         }
         else{
             echo "<script>Update Added Failed </script>";
@@ -73,9 +59,9 @@
                 <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Update About Description</h4>
+                    <h4 class="card-title">Update Contact Information </h4>
                     
-                    <p class="card-description"> Home / Description /<code>Edit</code> </p>
+                    <p class="card-description"> Home / Contact /<code>Edit</code> </p>
                     
                     <hr class="mb-5">
 
@@ -83,28 +69,22 @@
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
                         
                         <div class="form-group">
-                            <label>Institution Name</label>
-                            <input name="name" class="form-control"> <?php echo $data['name'] ?>
+                            <label>Mobile Number</label>
+                            <input name="phone" type="text" class="form-control form-control-lg" value="<?php echo $data['phone'] ?>" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input name="email" type="text" class="form-control form-control-lg" value="<?php echo $data['email'] ?>" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Notice File</label>
-                            <input name="old_image" type="hidden" value="<?php echo $data['image'] ?>">
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <img id="previewImage" src="<?php echo $data['image'] ?>" class="img-fluid" style="height: 100px; width: 150px; display: inline-block">
+                            <label>Google Map Link</label>
+                            <input name="map" type="text" class="form-control form-control-lg" value="<?php echo $data['map'] ?>" required>
                         </div>
 
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">
                     </form>
-
 
 
                   </div>

@@ -2,8 +2,7 @@
 
     include_once 'config.php';
 
-  
-    $sql = "SELECT * FROM about WHERE id = 1";
+    $sql = "SELECT * FROM scroll_notice WHERE id = 1";
 
     $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
     $data = mysqli_fetch_assoc($result);
@@ -11,34 +10,16 @@
     if(isset($_POST['update_btn'])){
 
         
-        $name = $_POST['name'];
-        $image = $_POST['old_image'];
-        $description = $_POST['description'];
+        $headline = $_POST['headline'];
 
-        if(isset($_FILES['image']['name'])){
-
-          $dir_name = 'uploads/about/';
-          if (!file_exists($dir_name)) { mkdir($dir_name, 0755, true); }
-          $file_name = time() .'.'. pathinfo( $_FILES['image']['name'], PATHINFO_EXTENSION );
-          move_uploaded_file($_FILES['image']['tmp_name'], $dir_name.$file_name);
-          if(file_exists($_POST['old_file'])){
-            unlink($_POST['old_file']);
-          }
-
-          $image = $dir_name.$file_name;
-
-        }
-
-        
-
-        $sql = "UPDATE `about` SET `name`='$name', `description`='$description', `image`='$image' WHERE id = 1";
+        $sql = "UPDATE `scroll_notice` SET `headline`='$headline' WHERE id = 1";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
-            header("Location: about.php");
+            header("Location: notice-scroll.php");
         }
         else{
-            echo "<script>Update Added Failed </script>";
+            echo "<script> Failed to Update</script>";
         }
 
     }
@@ -83,23 +64,8 @@
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
                         
                         <div class="form-group">
-                            <label>Institution Name</label>
-                            <input name="name" class="form-control"> <?php echo $data['name'] ?>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea name="description" class="form-control" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Notice File</label>
-                            <input name="old_image" type="hidden" value="<?php echo $data['image'] ?>">
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <img id="previewImage" src="<?php echo $data['image'] ?>" class="img-fluid" style="height: 100px; width: 150px; display: inline-block">
+                            <label>Headline</label>
+                            <textarea name="headline" class="form-control" rows="8"> <?php echo $data['headline'] ?> </textarea>
                         </div>
 
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">
