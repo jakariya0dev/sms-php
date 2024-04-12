@@ -65,7 +65,7 @@
                         
                         <div class="form-group">
                             <label>Headline</label>
-                            <textarea name="headline" class="form-control" rows="8"> <?php echo $data['headline'] ?> </textarea>
+                            <textarea name="headline" class="form-control custom-text-area" > <?php echo $data['headline'] ?> </textarea>
                         </div>
 
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">

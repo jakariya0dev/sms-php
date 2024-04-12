@@ -113,7 +113,7 @@
 
                         <div class="form-group">
                             <label>Principal Speech</label>
-                            <textarea name="speech" style="height: 250px; line-height: 24px" class="form-control form-control-lg"><?php echo $president['speech'] ?></textarea>
+                            <textarea name="speech" class="form-control form-control-lg custom-text-area"><?php echo $president['speech'] ?></textarea>
                         </div>
 
                         <div class="form-group">

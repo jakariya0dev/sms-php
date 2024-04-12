@@ -94,7 +94,7 @@
                         
                         <div class="form-group">
                             <label>Notice Description</label>
-                            <textarea name="n_description" class="form-control" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
+                            <textarea name="n_description" class="form-control custom-text-area" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
                         </div>
 
                         <div class="form-group">

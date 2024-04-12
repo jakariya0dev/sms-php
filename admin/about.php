@@ -84,12 +84,14 @@
                         
                         <div class="form-group">
                             <label>Institution Name</label>
-                            <input name="name" class="form-control"> <?php echo $data['name'] ?>
+                            <input name="institute_name" class="form-control" value="<?php echo $data['institute_name'] ?>"> 
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" class="form-control" id="exampleTextarea1" rows="8"> <?php echo $data['description'] ?> </textarea>
+                            <textarea name="description" class="form-control custom-text-area" style=""> 
+                              <?php echo $data['description'] ?> 
+                            </textarea>
                         </div>
 
                         <div class="form-group">

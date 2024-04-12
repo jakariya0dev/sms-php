@@ -44,14 +44,28 @@
             <div class="col">
                 <div class="bg-info text-center p-4">
                     <i class="fa-solid fa-calendar-days display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">বাংলা ইবুক</p>
+                    <p class="m-0 sidebar-link">বাংলা ই-বুক</p>
                 </div>
             </div>
 
             <div class="col">
                 <div class="bg-info text-center p-4">
                     <i class="fa-solid fa-house display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">ইংরেজি ইবুক</p>
+                    <p class="m-0 sidebar-link">ইংরেজি ই-বুক</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="bg-info text-center p-4">
+                    <i class="fa-solid fa-calendar-days display-5 mb-3"></i>
+                    <p class="m-0 sidebar-link">রেজাল্ট</p>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="bg-info text-center p-4">
+                    <i class="fa-solid fa-house display-5 mb-3"></i>
+                    <p class="m-0 sidebar-link">গভর্নিং বডি</p>
                 </div>
             </div>
 

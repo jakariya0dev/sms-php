@@ -2,10 +2,20 @@ input{
     color: wheat !important;
 }
 
+input:focus {
+    color: wheat !important;
+}
+
 option{
     color: wheat !important;
 }
 
 #select{
     color: wheat !important;
+}
+
+.custom-text-area, .custom-text-area:focus{
+    height: 250px; 
+    color: wheat; 
+    line-height: 24px;
 }

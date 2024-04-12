@@ -107,7 +107,7 @@
 
                         <div class="form-group">
                             <label>President Speech</label>
-                            <textarea name="speech" class="form-control form-control-lg" style="height: 250px; line-height: 24px"><?php echo $president['speech'] ?></textarea>
+                            <textarea name="speech" class="form-control form-control-lg" style="height: 250px; line-height: 24px; color: wheat;"><?php echo $president['speech'] ?></textarea>
                         </div>5
 
                         <div class="form-group">

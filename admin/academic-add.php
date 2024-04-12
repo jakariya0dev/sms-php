@@ -2,40 +2,42 @@
 
     include_once 'config.php';
 
-    $image_error = false;
+    $file_error = false;
 
     if(isset($_POST['submit'])){
 
-        if(isset($_FILES['n_file']['name']) && $_FILES['n_file']['size'] < 5*1024*1024){
+      $title = $_POST['title'];
+      $slug = strtolower(trim($title));
+      $slug = str_replace(' ', '-', $slug);
+      $description = $_POST['description'];
+      $file = '';
 
-          $dir_name = 'uploads/notice/';
+      if($_FILES['file']['size'] > 0){
 
-          if (!file_exists($dir_name)) {
-              mkdir($dir_name, 0755, true);
-          }
-          $file_name = time() .'.'. pathinfo($_FILES['n_file']['name'], PATHINFO_EXTENSION);
-          move_uploaded_file($_FILES['n_file']['tmp_name'], $dir_name.$file_name);
-
-          $n_title = $_POST['n_title'];
-          $n_description = $_POST['n_description'];
-          $n_date = $_POST['n_date'];
-          $n_file = $dir_name.$file_name;
-
-          $sql = "INSERT INTO `notice`(`title`, `description`, `date`, `file`) VALUES ('$n_title','$n_description','$n_date','$n_file')";
-
-          $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-          if($result){
-              header("Location: notice-all.php");
-              
-          }
-
+        if( $_FILES['file']['size'] > 5*1024*1024){
+          return $image_error = true;
         }
 
-        
-        else{
-            $image_error = true;
+        $dir_name = 'uploads/academic/';
+
+        if (!file_exists($dir_name)) {
+            mkdir($dir_name, 0755, true);
         }
+        $file_name = time() .'.'. pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+        move_uploaded_file($_FILES['file']['tmp_name'], $dir_name.$file_name);
+
+        $file = $dir_name.$file_name;
+    
+      }
+
+      $sql = "INSERT INTO `academic`(`title`, `slug`, `description`, `file`) VALUES ('$title', '$slug', '$description','$file')";
+
+      $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+      if($result){
+          header("Location: academic-all.php");
+      }
+      
 
     }
     
@@ -70,16 +72,16 @@
                 <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Add New Notice</h4>
+                    <h4 class="card-title">Add New Academic Link</h4>
                     
-                    <p class="card-description"> Home / Notice /<code>New</code> </p>
+                    <p class="card-description"> Home / Academic /<code>New</code> </p>
                     
                     <hr class="mb-5">
 
-                    <?php if ($image_error): ?>
+                    <?php if ($file_error): ?>
                       <div class="alert alert-warning mb-5" role="alert">
                         <h4>You Have Error!</h4> 
-                        Select a valid image file (type: jpg, jpeg, png) with less than 5MB size.
+                        Select a valid file (type: jpg, jpeg, png or pdf) with less than 5MB size.
                       </div>
                     <?php endif; ?>
 
@@ -87,29 +89,26 @@
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <label>Notice Title</label>
-                            <input name="n_title" type="text" class="form-control form-control-lg">
+                            <label>Title</label>
+                            <input name="title" type="text" class="form-control form-control-lg">
                         </div>
                         
                         <div class="form-group">
-                            <label>Notice Description</label>
-                            <textarea name="n_description" class="form-control custom-text-area"></textarea>
+                            <label>Description</label>
+                            <textarea name="description" class="form-control custom-text-area"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>Notice File</label>
-                            <input name="n_file" type="file" class="form-control form-control-lg">
+                            <label>File</label>
+                            <input id="inputImage" name="file" type="file" class="form-control form-control-lg">
                         </div>
 
-                        <div class="form-group">
-                            <label>Notice Date</label>
-                            <input name="n_date" type="date" class="form-control form-control-lg">
+                        <div class="form-group mb-4">
+                            <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px">
                         </div>
 
                         <input type="submit" value="Save Notice" name="submit" class="btn btn-primary">
                     </form>
-
-
 
                   </div>
                 </div>
