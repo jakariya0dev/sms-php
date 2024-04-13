@@ -38,7 +38,8 @@
                                     <?php while ($row = mysqli_fetch_array($teacher)): ?>
                                         
                                         <div class="col">
-                                            <div class="item mb-5">
+                                            <a href="<?php echo 'teacher.php?id='.$row['id'] ?>">
+                                                <div class="item mb-5">
                                                 <div class="team-member">
                                                     <div class="pro-pic">
                                                         <img class="img-fluid img-thumbnail w-100 h-100" src="<?php echo 'admin./'.$row['image'] ?>" />
@@ -57,6 +58,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            </a>
                                         </div>
 
                                     <?php endwhile; ?>

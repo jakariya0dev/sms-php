@@ -124,6 +124,11 @@ body {
 }
 
 /* Navbar */
+
+nav{
+  position: sticky !important;
+  top: 0 !important;
+}
 .nav-item {
   padding-left: 10px;
   padding-right: 10px;

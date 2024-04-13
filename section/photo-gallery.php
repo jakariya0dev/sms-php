@@ -5,7 +5,7 @@
 
 ?>
 
-<section id="gallery data-aos="fade-up">
+<section id="gallery" data-aos="fade-up">
         
     <p class="title">ফটো গ্যালারি</p>
 

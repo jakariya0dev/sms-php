@@ -40,13 +40,13 @@
                     </div>
                 </div>
 
+                 <!-- Team Section START  -->
+                <?php include_once './section/teacher-slider.php' ?>
+                <!-- Team Section END  -->
+
                 <!-- Photo Gallery Start -->
                 <?php include_once './section/photo-gallery.php' ?>
                 <!-- Photo Gallery End -->
-
-                <!-- Team Section START  -->
-                <?php include_once './section/teacher-slider.php' ?>
-                <!-- Team Section END  -->
 
                 <!-- Footer Section START  -->
                 <?php include_once './section/footer-section.php' ?>

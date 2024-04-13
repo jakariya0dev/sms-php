@@ -2,8 +2,10 @@
   
     include_once 'config.php';
   
-    $sql = "SELECT * FROM teacher";
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM teacher WHERE `id` = $id";
     $teacher = mysqli_query($conn, $sql) or die(mysqli_error($con));
+    $teacher = mysqli_fetch_assoc($teacher);
 
 ?>
 
@@ -40,10 +42,7 @@
                     <div class="col-md-9">
                         <div class="mt-2">
                             
-                            <?php if(mysqli_num_rows($teacher) > 0) : ?>
-                                
-                            <?php while ($row = mysqli_fetch_array($teacher)): ?>
-                            <?php endwhile; ?>  
+                            
                                 
                                 <div class="card mb-3">
                                     <div class="row gx-3">
@@ -52,8 +51,8 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="d-flex flex-column justify-content-center h-100">
-                                                <p class="card-title display-6">Zakariya Hossain</p>
-                                                <h4 class="card-text">Web Developer</h4>
+                                                <p class="card-title display-6"><?php echo $teacher['name']?></p>
+                                                <h4 class="card-text"><?php echo $teacher['designation']?></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -64,56 +63,50 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">Email</th>
-                                            <td>:&nbsp; Mark</td>
+                                            <td>:&nbsp; <?php echo $teacher['email']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Phone</th>
-                                            <td>:&nbsp; Mark</td>
+                                            <td>:&nbsp; <?php echo $teacher['phone']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Index-Number</th>
-                                            <td>:&nbsp; Mark</td>
+                                            <td>:&nbsp; <?php echo $teacher['index_number']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Qualification</th>
-                                            <td>:&nbsp; Jacob</td>
+                                            <td>:&nbsp; <?php echo $teacher['qualification']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Department</th>
-                                            <td>:&nbsp; Jacob</td>
+                                            <td>:&nbsp; <?php echo $teacher['department']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Blood-Group</th>
-                                            <td>:&nbsp; @twitter</td>
+                                            <td>:&nbsp; <?php echo $teacher['blood_group']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Birth-Date</th>
-                                            <td>:&nbsp; @twitter</td>
+                                            <td>:&nbsp; <?php echo $teacher['birth_date']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Joining-Date</th>
-                                            <td>:&nbsp; @twitter</td>
+                                            <td>:&nbsp; <?php echo $teacher['joining_date']?></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                             <tr>
                                             <th scope="row">Present-Address</th>
-                                            <td>:&nbsp; Lorem ipsum dolor sit amet.</td>
+                                            <td>:&nbsp; <?php echo $teacher['present_address']?></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Permanent-Address</th>
-                                            <td>:&nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, qui.</td>
+                                            <td>:&nbsp; <?php echo $teacher['permanent_address']?></td>
                                         </tr>
                                     </tfoot>
                                 </table>
 
-                            <?php else: ?>
-                                <div class="notice-item bg-secondary-subtle d-flex justify-content-between bg-white p-2 mb-1">
-                                    <div>
-                                        <p class="mb-0">No Notice Found</p>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                            
                             
                         </div>
                         
