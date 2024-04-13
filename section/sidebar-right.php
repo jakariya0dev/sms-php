@@ -61,7 +61,7 @@
             </div>
 
             <div class="col">
-                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                <a href="administration-list.php" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-user-tie display-6 mb-3"></i>
                         <p class="m-0 sidebar-link">গভর্নিং বডি</p>
