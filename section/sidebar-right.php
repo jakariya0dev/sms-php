@@ -70,7 +70,7 @@
             </div>
 
             <div class="col">
-                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                <a href="notice-all.php" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-calendar-days display-6 mb-3"></i>
                         <p class="m-0 sidebar-link">নোটিশ</p>
@@ -79,7 +79,7 @@
             </div>
 
             <div class="col">
-                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                <a href="teacher-list.php" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-person-chalkboard display-6 mb-3"></i>
                         <p class="m-0 sidebar-link">শিক্ষক তালিকা</p>

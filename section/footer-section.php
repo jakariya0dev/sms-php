@@ -18,6 +18,10 @@
                     ইমেইল: <?php echo $contact_result['email'] ?> <br>
                     ফোন: <?php echo $contact_result['phone'] ?> <br>
                 </div>
+                <h4 class="mt-4">ঠিকানাঃ</h4>
+                <div style="color: wheat;">
+                   <?php echo $contact_result['address'] ?> <br>
+                </div>
             </div>
 
             <div class="col">
@@ -45,12 +49,14 @@
 
         <div class="row text-center bg-primary-dark text-white p-3">
             <div class="col-md-6 text-start">
-                কপিরাইট © ২০২৪ সর্বস্বত্ব সংরক্ষিত <br>
-                গণপ্রজাতন্ত্রী বাংলাদেশ সরকার
+                কপিরাইট © <?php echo date("Y"); ?> সর্বস্বত্ব সংরক্ষিত <br>
+                <p><?php echo $institute_name_bn; ?></p>
             </div>
             <div class="col-md-6 text-end">
                 কারিগরি সহযোগিতায় <br>
-                রাইজ আপ ল্যাবস
+                <a href="<?php echo $dev_company_web; ?>" class="text-decoration-none" style="color: wheat">
+                    <h5><?php echo $dev_company_name_bn; ?></h5>
+                </a>
             </div>
         </div>
     </footer>

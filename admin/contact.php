@@ -15,16 +15,17 @@
 
         $phone = $_POST['phone'];
         $email = $_POST['email'];
+        $address = $_POST['address'];
         $map = $_POST['map'];
 
-        $sql = "UPDATE `contact` SET `phone`='$phone', `email`='$email', `map`='$map' WHERE id = 1";
+        $sql = "UPDATE `contact` SET `phone`='$phone', `email`='$email', `address` = '$address', `map`='$map' WHERE id = 1";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
             header("Location: contact.php");
         }
         else{
-            echo "<script>Update Added Failed </script>";
+            echo "<script>Failed to Update</script>";
         }
 
     }
@@ -76,6 +77,11 @@
                         <div class="form-group">
                             <label>Email Address</label>
                             <input name="email" type="text" class="form-control form-control-lg" value="<?php echo $data['email'] ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input name="address" type="text" class="form-control form-control-lg" value="<?php echo $data['address'] ?>" required>
                         </div>
 
                         <div class="form-group">

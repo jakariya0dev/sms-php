@@ -32,7 +32,7 @@
                     <div class="col-md-9">
                         <div class="mt-4">
                             <p class="display-6 text-center mb-3"> পরিচালনা পর্ষদ</p>
-<div class="footer-h-rule"></div>
+                            <div class="footer-h-rule"></div>
                             <?php if(mysqli_num_rows($administration) > 0) : ?>
                                 <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                                     <?php while ($row = mysqli_fetch_array($administration)): ?>

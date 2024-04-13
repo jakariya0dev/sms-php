@@ -1,7 +1,7 @@
 <?php 
   
     include_once 'config.php';
-  
+
     $sql = "SELECT * FROM notice ORDER BY id DESC";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($con));
 
@@ -27,6 +27,12 @@
                 <?php include_once './section/header-section.php' ?>
                 <!-- Header with Nav End -->
 
+                <nav aria-label="breadcrumb" class="mt-4 position-static">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none">হোম</a></li>
+                        <li class="breadcrumb-item"> সব নোটিশ</li>
+                    </ol>
+                </nav>
 
                 <div class="row mt-4">
                     <div class="col-md-9">

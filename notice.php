@@ -28,6 +28,13 @@
                 <?php include_once './section/header-section.php' ?>
                 <!-- Header with Nav End -->
 
+                <nav aria-label="breadcrumb" class="mt-4 position-static">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none">হোম</a></li>
+                        <li class="breadcrumb-item"><a href="notice-all.php" class="text-decoration-none">সব নোটিশ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">নোটিশ</li>
+                    </ol>
+                </nav>
 
                 <div class="row mt-4">
                     <div class="col-md-9">
@@ -38,10 +45,8 @@
             
                                         <?php $i = 1; while($row = mysqli_fetch_assoc($result)): ?>
 
-                                            <h4><?php echo $row['title'] ?></h4>
+                                            <h4 class="mb-4"><?php echo $row['title'] ?></h4>
                                                 
-                                            
-                                            
                                             <!-- <iframe src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/'.$row['file'] ?>"
                                                 frameBorder="0"
                                                 scrolling="auto"

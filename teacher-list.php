@@ -27,7 +27,13 @@
                 <?php include_once './section/header-section.php' ?>
                 <!-- Header with Nav End -->
 
-
+                <nav aria-label="breadcrumb" class="mt-4 position-static">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none">হোম</a></li>
+                        <li class="breadcrumb-item"> শিক্ষক তালিকা </li>
+                        
+                    </ol>
+                </nav>
                 <div class="row mt-4">
                     <div class="col-md-9">
                         <div class="mt-4">

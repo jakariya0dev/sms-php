@@ -1,5 +1,7 @@
 <?php 
 
+include_once 'static-data.php';
+
 // $host = $_SERVER["SERVER_NAME"];
 $host = 'localhost';
 $user = "root";
