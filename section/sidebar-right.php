@@ -1,16 +1,19 @@
 <?php
 
-    $sql = "SELECT * FROM notice ORDER BY id LIMIT 5";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($con));
+    $notice_sql = "SELECT * FROM `notice` ORDER BY id LIMIT 5";
+    $notice = mysqli_query($conn, $notice_sql) or die(mysqli_error($con));
+
+    $academic_sql = "SELECT * FROM `academic` ORDER BY id LIMIT 5";
+    $academic = mysqli_query($conn, $academic_sql) or die(mysqli_error($con));
 
 ?>
 
     <div class="notice-board mb-5" data-aos="zoom-in">
         <p class="sidebar-header">নোটিশ বোর্ড</p>
 
-        <?php if(mysqli_num_rows($result) > 0) : ?>
+        <?php if(mysqli_num_rows($notice) > 0) : ?>
             
-            <?php    while($row = mysqli_fetch_assoc($result)): ?>
+            <?php    while($row = mysqli_fetch_assoc($notice)): ?>
                 
                 <div class="notice-item bg-secondary-subtle d-flex justify-content-between bg-white p-2 mb-1">
                     <a href="<?php echo 'notice.php?id='.$row['id'] ?>" class="text-decoration-none">
@@ -29,6 +32,7 @@
                 </div>
             </div>
         <?php endif; ?>
+
         <div class="text-end">
             <div class="hr-rule"></div>
             <p class="sidebar-see-all d-inline-block py-1 px-4">
@@ -101,15 +105,28 @@
 
     <p class="sidebar-header" data-aos="zoom-in"> একাডেমিক কর্নার</p>
     <div class="download-corner mb-5" data-aos="zoom-in">
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;একাডেমিক ক্যালেন্ডার
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
 
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
+
+        
+
+        <?php if(mysqli_num_rows($academic) > 0) : ?>
+            
+            <?php    while($row = mysqli_fetch_assoc($academic)): ?>
+            
+                <a href="<?php echo 'academic-corner.php?id='.$row['id'] ?>" class="text-decoration-none">
+                    <div class="item bg-success text-white mb-2 d-flex align-items-center">
+                        <span class="me-auto">
+                            <i class="fa-regular fa-square-caret-right"></i>
+                            &nbsp; <?php echo $row['title']?>
+                        </span>
+                    </div>
+                </a>
+
+            <?php endwhile; ?>
+
+        <?php endif; ?>    
+
+        <!-- <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
             <span class="me-auto">
                 <i class="fa-solid fa-bars-progress"></i>
                 &nbsp;ক্লাস রুটিন
@@ -161,7 +178,7 @@
                 &nbsp;কোড অব কন্ডাক্ট
             </span>
             <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
+        </div> -->
     </div>
 
     <p class="sidebar-header" data-aos="zoom-in">জাতীয় সংগীত</p>
