@@ -105,6 +105,23 @@ body {
   border-bottom: 1px solid var(--light-blue-bg);
 }
 
+.sc-item{
+  background-color: var(--blue-grey);
+  padding: 16px;
+  text-align: center;
+}
+
+.sc-item:hover{
+  background-color: var(--bg-primary);
+  color: white;
+  transition: all 500ms;
+}
+
+.sc-item > i{
+  
+  padding-top: 6px;
+}
+
 .sidebar-header {
   background-color: var(--bg-primary-dark);
   color: var(--grey-light);

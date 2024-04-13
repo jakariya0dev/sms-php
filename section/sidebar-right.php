@@ -37,50 +37,63 @@
         </div>
     </div>
 
-    <p class="sidebar-header" data-aos="zoom-in">ডাউনলোড কর্নার</p>
+    <p class="sidebar-header" data-aos="zoom-in">স্টুডেন্ট কর্নার</p>
 
     <div class="student-corner mb-5" data-aos="zoom-in">
         <div class="row row-cols-2 g-3">
             <div class="col">
-                <div class="bg-info text-center p-4">
-                    <i class="fa-solid fa-calendar-days display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">বাংলা ই-বুক</p>
-                </div>
+                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                    <div class="sc-item">
+                        <i class="fa-solid fa-book display-6 mb-3"></i>
+                        <p class="m-0 sidebar-link"> টেক্স বুক</p>
+                    </div>
+                </a>
+                
             </div>
 
             <div class="col">
-                <div class="bg-info text-center p-4">
-                    <i class="fa-solid fa-house display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">ইংরেজি ই-বুক</p>
-                </div>
+                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                    <div class="sc-item">
+                        <i class="fa-solid fa-pen-nib display-6 mb-3"></i>
+                        <p class="m-0 sidebar-link">রেজাল্ট</p>
+                    </div>
+                </a>
             </div>
 
             <div class="col">
-                <div class="bg-info text-center p-4">
-                    <i class="fa-solid fa-calendar-days display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">রেজাল্ট</p>
-                </div>
+                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                    <div class="sc-item">
+                        <i class="fa-solid fa-user-tie display-6 mb-3"></i>
+                        <p class="m-0 sidebar-link">গভর্নিং বডি</p>
+                    </div>
+                </a>
             </div>
 
             <div class="col">
-                <div class="bg-info text-center p-4">
-                    <i class="fa-solid fa-house display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">গভর্নিং বডি</p>
-                </div>
+                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                    <div class="sc-item">
+                        <i class="fa-solid fa-calendar-days display-6 mb-3"></i>
+                        <p class="m-0 sidebar-link">নোটিশ</p>
+                    </div>
+                </a>
             </div>
 
             <div class="col">
-                <div class="bg-info text-center p-4">
-                    <i class="fa-solid fa-calendar-days display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">নোটিশ</p>
-                </div>
+                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                    <div class="sc-item">
+                        <i class="fa-solid fa-person-chalkboard display-6 mb-3"></i>
+                        <p class="m-0 sidebar-link">শিক্ষক তালিকা</p>
+                    </div>
+                </a>
             </div>
 
             <div class="col">
-                <div class="bg-info text-center p-4">
-                    <i class="fa-solid fa-house display-5 mb-3"></i>
-                    <p class="m-0 sidebar-link">শিক্ষক তালিকা</p>
-                </div>
+                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                    <div class="sc-item">
+                        <i class="fa-solid fa-address-card display-6 mb-3"></i>
+                        <p class="m-0 sidebar-link">স্টুডেন্ট প্রোফাইল</p>
+                    </div>
+                </a>
             </div>
 
         </div>

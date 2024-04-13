@@ -56,7 +56,7 @@
     <div class="container">
         <div class="row my-3">
             <div class="col-auto d-inline-block pt-2 breaking-title">বিশেষ বিজ্ঞপ্তি</div>
-            <div class="col pt-2 grey-light">
+            <div class="col pt-2 blue-grey">
                 <marquee>
                     <?php echo $scroll_result['headline'] ?>
                 </marquee>
