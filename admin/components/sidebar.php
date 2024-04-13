@@ -189,7 +189,7 @@
       </div>
     </li>
 
-        <!--  Administration -->
+    <!--  Administration -->
     <li class="nav-item menu-items">
       <a class="nav-link" data-bs-toggle="collapse" href="#administration" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
@@ -202,6 +202,23 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="administration-all.php">All Administration</a></li>
           <li class="nav-item"> <a class="nav-link" href="administration-add.php">Add Administration</a></li>
+        </ul>
+      </div>
+    </li>
+
+    <!--  Student -->
+    <li class="nav-item menu-items">
+      <a class="nav-link" data-bs-toggle="collapse" href="#student" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-icon">
+          <i class="mdi mdi-laptop"></i>
+        </span>
+        <span class="menu-title">Students</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="student">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="student-all.php">All Student</a></li>
+          <li class="nav-item"> <a class="nav-link" href="student-add.php">Add Student</a></li>
         </ul>
       </div>
     </li>
