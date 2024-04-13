@@ -99,7 +99,7 @@
         </div>
     </div>
 
-    <p class="sidebar-header" data-aos="zoom-in">শিক্ষার্থী কর্নার</p>
+    <p class="sidebar-header" data-aos="zoom-in"> একাডেমিক কর্নার</p>
     <div class="download-corner mb-5" data-aos="zoom-in">
         <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
             <span class="me-auto">
@@ -165,10 +165,10 @@
     </div>
 
     <p class="sidebar-header" data-aos="zoom-in">জাতীয় সংগীত</p>
-    <iframe class="mb-5" width="100%" height="200" src="https://www.youtube-nocookie.com/embed/ywiu2FF9liA?si=Tcw2KWFXthRNzNUL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe data-aos="zoom-in" class="mb-5" width="100%" height="200" src="https://www.youtube-nocookie.com/embed/ywiu2FF9liA?si=Tcw2KWFXthRNzNUL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
     <p class="sidebar-header" data-aos="zoom-in">ফেইসবুক পেইজ</p>
-    <iframe class="mb-5" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbrainstorm21.bd&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    <iframe data-aos="zoom-in" class="mb-5" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fbrainstorm21.bd&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
     <p class="sidebar-header" data-aos="zoom-in">জরুরি হটলাইন</p>
-    <img src="./images/sidebar-img.jpg" class="img-fluid">
+    <img data-aos="zoom-in" src="./images/sidebar-img.jpg" class="img-fluid">

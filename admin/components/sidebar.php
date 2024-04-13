@@ -189,5 +189,22 @@
       </div>
     </li>
 
+        <!--  Administration -->
+    <li class="nav-item menu-items">
+      <a class="nav-link" data-bs-toggle="collapse" href="#administration" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-icon">
+          <i class="mdi mdi-laptop"></i>
+        </span>
+        <span class="menu-title">Administration</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="administration">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="administration-all.php">All Administration</a></li>
+          <li class="nav-item"> <a class="nav-link" href="administration-add.php">Add Administration</a></li>
+        </ul>
+      </div>
+    </li>
+
   </ul>
 </nav>

@@ -19,3 +19,7 @@ option{
     color: wheat; 
     line-height: 24px;
 }
+#previewImage{
+    height: 100px; 
+    width: 150px
+}

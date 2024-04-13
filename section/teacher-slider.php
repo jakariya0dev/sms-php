@@ -20,7 +20,7 @@
                                 <img class="img-fluid w-100 h-100" src="<?php echo 'admin./'.$row['image'] ?>" />
                             </div>
                             <div class="social-icon mb-3">
-                                <i class="bi bi-telephone-plus"></i> &nbsp; <?php echo $row['phone'] ?>
+                                <i class="fa-solid fa-phone-volume"></i> &nbsp; <?php echo $row['phone'] ?>
                                 <!-- <a href=""><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href=""><i class="fa-brands fa-twitter"></i></a>
                                 <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
