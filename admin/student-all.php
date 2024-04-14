@@ -105,8 +105,8 @@
                             <td> <?php echo $row['department'] ?> </td>
                             <td> <?php echo $row['year'] ?> </td>
                             <td>
-                              <a href="<?php echo 'teacher-edit.php?id='.$row['id']?>" class="btn btn-warning"> <i class="fa-solid fa-eye"></i></i> </a>
-                              <a href="<?php echo 'teacher-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> </a>
+                              <a href="<?php echo 'student-profile.php?id='.$row['id']?>" class="btn btn-warning"> <i class="fa-solid fa-eye"></i></i> </a>
+                              <a href="<?php echo 'student-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> </a>
                               <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $row['id']?>">
                                 <input type="hidden" name="image" value="<?php echo $row['image']?>">

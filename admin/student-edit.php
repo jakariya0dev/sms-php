@@ -4,11 +4,18 @@
 
     $pro_pic_error = false;
     
-    $id = $_GET['id'];
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM `student` WHERE `id` = $id";
+        $student = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $student = mysqli_fetch_assoc($student);
+    }
+    
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['update_btn'])){
 
       // Seed Teacher Data to Database
+      $id = $_POST['id'];
       $full_name = $_POST['full_name'];
       $department = $_POST['department'];
       $br_no = $_POST['br_no'];
@@ -39,7 +46,8 @@
 
       $present_address = $_POST['present_address'];
       $permanent_address = $_POST['permanent_address'];
-      $image = '';
+      $image = $old_image;
+      $old_image = $_POST['old_image'];
 
       if($_FILES['image']['size'] > 0){
 
@@ -60,17 +68,23 @@
           move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
 
           $image = $pro_pic_dir.$pro_pic_name;
-      }
+
+          // Delete Old Image
+          if(file_exists($old_image)){
+            unlink($old_image);
+          }
         
-      $sql = "INSERT INTO `student`(`full_name`, `br_no`, `blood_group`, `birth_date`, `gender`, `phone`, `email`, `class`, `section`, `department`, `year`, `f_name`, `f_occupation`, `f_nid`, `f_phone`, `m_name`, `m_occupation`, `m_nid`, `m_phone`, `g_name`, `g_email`, `g_phone`, `g_relationship`, `present_address`, `permanent_address`, `image`) VALUES ('$full_name', '$br_no', '$blood_group', '$birth_date', '$gender', '$phone', '$email', '$class', '$section', '$department', '$year', '$f_name', '$f_occupation', '$f_nid', '$f_phone', '$m_name', '$m_occupation', '$m_nid', '$m_phone:', '$g_name', '$g_email', '$g_phone', '$g_relationship', '$present_address', '$permanent_address:', '$image')";
+      }
+
+      $update_sql = "UPDATE `student` SET `full_name`='$full_name', `br_no`='$br_no', `blood_group`='$blood_group', `birth_date`='$birth_date', `gender`='$gender', `phone`='$phone', `email`='$email', `class`='$class', `section`='$section', `department`='$department', `year`='$year', `f_name`='$f_name', `f_occupation`='$f_occupation', `f_nid`='$f_nid', `f_phone`='$f_phone', `m_name`='$m_name', `m_occupation`='$m_occupation', `m_nid`='$m_nid', `m_phone`='$m_phone', `g_name`='$g_name', `g_email`='$g_email', `g_phone`='$g_phone', `g_relationship`='$g_relationship', `present_address`='$present_address', `permanent_address`='$permanent_address', `image`='$image' WHERE `id` = $id";
 
       // print($sql);
       // die();
 
-      $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+      $result = mysqli_query($conn, $update_sql) or die("Query Failed: ". mysqli_error($conn));
 
       if($result){
-          header("Location: student-all.php");
+          header("Location: student-profile.php?id=".$_POST['id']);
       }
 
     }
@@ -108,9 +122,9 @@
                     <div class="col-md-8 grid-margin stretch-card">
                     <div class="card">
                       <div class="card-body">
-                        <h4 class="card-title">Add New Student</h4>
+                        <h4 class="card-title">Update Student Profile</h4>
                         
-                        <p class="card-description"> Home / Student /<code>New</code> </p>
+                        <p class="card-description"> Home / Student /<code>Edit</code> </p>
 
                         <?php if ($pro_pic_error): ?>
                           <div class="alert alert-warning mb-5" role="alert">
@@ -138,13 +152,13 @@
                               <div class="col-md-8">
                                   <div class="form-group mb-4">
                                       <label>Full Name:</label>
-                                      <input name="full_name" type="text" class="form-control form-control" required>
+                                      <input name="full_name" type="text" value="<?php echo $student['full_name'] ?>" class="form-control form-control" required>
                                   </div>
                               </div>
                               <div class="col-md-4">
                                   <div class="form-group mb-4">
                                       <label>Phone Number:</label>
-                                      <input name="phone" type="text" class="form-control form-control" required>
+                                      <input name="phone" type="text" value="<?php echo $student['phone'] ?>" class="form-control form-control" required>
                                   </div>
                               </div>
 
@@ -155,14 +169,14 @@
                                 <div class="col">
                                       <div class="form-group mb-4">
                                           <label>Birth Registration No.:</label>
-                                          <input name="br_no" type="text" class="form-control form-control">
+                                          <input name="br_no" type="text" value="<?php echo $student['br_no'] ?>" class="form-control form-control">
                                       </div>
                                 </div>
 
                                 <div class="col">
                                       <div class="form-group mb-4">
                                           <label>Email Address:</label>
-                                          <input name="email" type="email" class="form-control form-control">
+                                          <input name="email" type="email" value="<?php echo $student['email'] ?>" class="form-control form-control">
                                       </div>
                                 </div>
                             </div>
@@ -173,8 +187,8 @@
                                     <div class="form-group mb-4">
                                       <label>Blood Group:</label>
                                       <select id="select" class="form-control" name="blood_group">
-                                          <option disabled selected>Select Blood Group</option>
-                                          <option value="A+ve">A+ve</option>
+                                          <option disabled>Select Blood Group</option>
+                                          <option  value="A+ve">A+ve</option>
                                           <option value="A-ve">A-ve</option>
                                           <option value="B+ve">B+ve</option>
                                           <option value="B-ve">B-ve</option>
@@ -189,7 +203,7 @@
                                 <div class="col">
                                   <div class="form-group mb-4">
                                       <label>Birth Date:</label>
-                                      <input name="birth_date" type="date" class="form-control form-control">
+                                      <input name="birth_date" type="date" value="<?php echo $student['birth_date'] ?>" class="form-control form-control">
                                   </div>
                                 </div>
 
@@ -267,7 +281,7 @@
                                 <div class="col">
                                     <div class="form-group mb-4">
                                         <label>Year (Session):</label>
-                                        <input name="year" type="number" min="2000" max="2050" value="<?php echo date('Y'); ?>" class="form-control form-control">
+                                        <input name="year" type="number" min="2000" max="2050" value="<?php echo $student['year'] ?>" class="form-control form-control">
                                     </div>
                                 </div>
 
@@ -291,13 +305,13 @@
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Father's Name:</label>
-                                    <input name="f_name" type="text" class="form-control form-control" required>
+                                    <input name="f_name" type="text" value="<?php echo $student['f_name'] ?>" class="form-control form-control" required>
                                 </div>
                             </div>
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Father's Occupation:</label>
-                                    <input name="f_occupation" type="text" class="form-control form-control">
+                                    <input name="f_occupation" type="text" value="<?php echo $student['f_occupation'] ?>" class="form-control form-control">
                                 </div>
                             </div>
 
@@ -308,13 +322,13 @@
                             <div class="col"> 
                                   <div class="form-group mb-4">
                                       <label>Father's Nid:</label>
-                                      <input name="f_nid" type="text" class="form-control form-control">
+                                      <input name="f_nid" type="text" value="<?php echo $student['f_nid'] ?>" class="form-control form-control">
                                   </div>
                             </div>
                             <div class="col"> 
                                   <div class="form-group mb-4">
                                       <label>Father's Phone:</label>
-                                      <input name="f_phone" type="text" class="form-control form-control" required>
+                                      <input name="f_phone" type="text" value="<?php echo $student['f_phone'] ?>" class="form-control form-control" required>
                                   </div>
                             </div>
                             
@@ -325,13 +339,13 @@
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Mother's Name:</label>
-                                    <input name="m_name" type="text" class="form-control form-control" required>
+                                    <input name="m_name" type="text" value="<?php echo $student['m_name'] ?>" class="form-control form-control" required>
                                 </div>
                             </div>
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Mother's Occupation:</label>
-                                    <input name="m_occupation" type="text" class="form-control form-control">
+                                    <input name="m_occupation" type="text" value="<?php echo $student['m_occupation'] ?>" class="form-control form-control">
                                 </div>
                             </div>
                             
@@ -342,13 +356,13 @@
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Mother's Nid:</label>
-                                    <input name="m_nid" type="text" class="form-control form-control">
+                                    <input name="m_nid" type="text" value="<?php echo $student['m_nid'] ?>" class="form-control form-control">
                                 </div>
                             </div>
                             <div class="col"> 
                                   <div class="form-group mb-4">
                                       <label>Mother's Phone:</label>
-                                      <input name="m_phone" type="text" class="form-control form-control" required>
+                                      <input name="m_phone" type="text" value="<?php echo $student['m_phone'] ?>" class="form-control form-control" required>
                                   </div>
                             </div>
                             
@@ -359,14 +373,14 @@
                             <div class="col"> 
                                   <div class="form-group mb-4">
                                       <label>Guardian's Name:</label>
-                                      <input name="g_name" type="text" class="form-control form-control">
+                                      <input name="g_name" type="text" value="<?php echo $student['g_name'] ?>" class="form-control form-control">
                                   </div>
                             </div>
                             
                             <div class="col"> 
                                   <div class="form-group mb-4">
                                       <label>Relationship:</label>
-                                      <input name="g_relationship" type="text" class="form-control form-control" required>
+                                      <input name="g_relationship" type="text" value="<?php echo $student['g_relationship'] ?>" class="form-control form-control" required>
                                   </div>
                             </div>
                             
@@ -377,13 +391,13 @@
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Guardian's Email:</label>
-                                    <input name="g_email" type="text" class="form-control form-control">
+                                    <input name="g_email" type="text" value="<?php echo $student['g_email'] ?>" class="form-control form-control">
                                 </div>
                             </div>
                             <div class="col"> 
                                 <div class="form-group mb-4">
                                     <label>Guardian's Phone:</label>
-                                    <input name="g_phone" type="text" class="form-control form-control" required>
+                                    <input name="g_phone" type="text" value="<?php echo $student['g_phone'] ?>" class="form-control form-control" required>
                                 </div>
                             </div>
                             
@@ -401,24 +415,27 @@
                           
                               <div class="form-group mb-4">
                                   <label>Present Address:</label>
-                                  <input name="present_address" type="text" class="form-control form-control">
+                                  <input name="present_address" type="text" value="<?php echo $student['present_address'] ?>" class="form-control form-control">
                               </div>
                               
                               <div class="form-group mb-4">
                                   <label>Permanent Address:</label>
-                                  <input name="permanent_address" type="text" class="form-control form-control">
+                                  <input name="permanent_address" type="text" value="<?php echo $student['permanent_address'] ?>" class="form-control form-control">
                               </div>
 
                               <div class="form-group mb-4">
                                   <label>Profile Picture (Max-size: 2MB) : </label>
-                                  <input id="inputImage" name="image" type="file" class="form-control form-control">
+                                  <input id="inputImage" name="image" type="file" value="<?php echo $student['image'] ?>" class="form-control form-control">
                               </div>
 
                               <div class="form-group mb-4">
-                                  <img id="previewImage" class="img-fluid" style="height: 100px; width: 150px">
+                                  <img id="previewImage" src="<?php echo $student['image'] ?>" class="img-fluid" style="height: 100px; width: 150px">
                               </div>
 
-                              <input type="submit" value="Save" name="submit" class="btn btn-primary">
+                              <input name="id" type="hidden" value="<?php echo $student['id'] ?>">
+                              <input name="old_image" type="hidden" value="<?php echo $student['image'] ?>">
+
+                              <input type="submit" value="Update" name="update_btn" class="btn btn-primary">
 
                         </div>
                       </div>

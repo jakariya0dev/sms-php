@@ -2,31 +2,33 @@
 
   include_once 'config.php';
 
-  $error = false;
 
-  $id = $_GET['id'];
 
-  $sql = "SELECT * FROM `student` WHERE `Id` = $id";
-  $result = mysqlI_query($conn, $sql);
-  $student = mysqli_fetch_assoc($result);
 
   if(isset($_POST["delete_btn"])){
 
-    $id = $_POST["id"];
-    $sql = "DELETE FROM `student` WHERE id = $id";
-    $result = mysqli_query($conn, $sql);
+  $id = $_POST["id"];
+  $sql = "DELETE FROM `student` WHERE id = $id";
+  $result = mysqli_query($conn, $sql);
 
-    if(file_exists($_POST['image'])){
-      unlink($_POST['image']);
-    }
+  if(file_exists($_POST['image'])){
+    unlink($_POST['image']);
+  }
 
-    if($result){
-      header("Location: student-all.php");
-    }
-    else{
-      $error = true;
-    }
+  if($result){
+    header("Location: student-all.php");
+  }
+  else{
+    echo "<script>Failed to Delete</script>";
+  }
 
+}
+
+  if(isset($_GET['id'])){
+      $id = $_GET['id'];
+      $sql = "SELECT * FROM `student` WHERE `Id` = $id";
+      $result = mysqlI_query($conn, $sql);
+      $student = mysqli_fetch_assoc($result);
   }
 
 ?>
@@ -130,7 +132,11 @@
                           <div class="text-center m-5">
                               <a href="student-all.php" class="btn btn-warning p-2 mb-2">Back</a>
                               <a href="student-edit.php?id=<?php echo $student['id']; ?>" class="btn btn-info p-2 mb-2">Edit</a>
-                              <a href="student-add.php" class="btn btn-danger p-2 mb-2">Delete</a>
+                              <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="<?php echo $student['id']?>">
+                                <input type="hidden" name="image" value="<?php echo $student['image']?>">
+                                <button type="submit" name="delete_btn" class="btn btn-danger p-2 mb-2">Delete</i></i></button>
+                              </form>
                           </div>
 
                           

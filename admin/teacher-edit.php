@@ -22,13 +22,13 @@
         $name = $_POST['name'];
         $designation = $_POST['designation'];
         $phone = $_POST['phone'];
-        $picture = $_POST['old_picture'];
+        $image = $_POST['old_image'];
 
         // check, has image? 
-        if(file_exists($_FILES['picture']['tmp_name']) && $_FILES['picture']['size'] < 2*1024*1024 ){
+        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
 
           $pro_pic_dir = "uploads/teacher/";
-          $pro_pic_ext = pathinfo($_FILES["picture"]["name"], PATHINFO_EXTENSION);
+          $pro_pic_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
           // Check valid Image or not
           if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png'])){
@@ -38,18 +38,18 @@
 
           // Upload Profile Picture
           $pro_pic_name = time().'.'.$pro_pic_ext;
-          move_uploaded_file($_FILES['picture']['tmp_name'], $pro_pic_dir.$pro_pic_name);
+          move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
 
-          $picture = $pro_pic_dir.$pro_pic_name;
+          $image = $pro_pic_dir.$pro_pic_name;
 
           // delete old image
-          unlink($_POST['old_picture']);
+          unlink($_POST['old_image']);
 
         }
 
         
 
-        $sql = "UPDATE `teacher` SET `name`='$name',`designation`='$designation',`phone`='$phone',`picture`='$picture' WHERE id = $id";
+        $sql = "UPDATE `teacher` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
@@ -117,9 +117,9 @@
                         
                         <div class="form-group">
                             <label>Profile Picture</label>
-                            <input name="old_picture" value="<?php echo $data['image'] ?>" type="hidden">
-                            <input name="picture" id="inputPicture" type="file" class="form-control form-control-lg">
-                            <img class="img-fluid mt-3 mb-3" id="previewPicture" src="<?php echo $data['image'] ?>" alt="pro-pic" style="height: 100px; width: 150px">
+                            <input name="old_image" value="<?php echo $data['image'] ?>" type="hidden">
+                            <input name="image" id="inputImage" type="file" class="form-control form-control-lg">
+                            <img class="img-fluid mt-3 mb-3" id="previewImage" src="<?php echo $data['image'] ?>" alt="pro-pic" style="height: 100px; width: 150px">
                         </div>
                         
                         <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
