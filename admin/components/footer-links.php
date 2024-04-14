@@ -19,4 +19,6 @@
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script src="https://cdn.datatables.net/v/bs4/dt-2.0.3/datatables.min.js"></script>
     <script src="./assets/js/main.js"></script>

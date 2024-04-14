@@ -6,8 +6,8 @@
 
     if(isset($_GET['id'])){
 
-        $t_id = $_GET['id'];
-        $sql = "SELECT * FROM teacher WHERE id = $t_id";
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM teacher WHERE id = $id";
 
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
         $data = mysqli_fetch_assoc($result);
@@ -18,17 +18,17 @@
     if(isset($_POST['update_btn'])){
 
         // getting data from input field
-        $t_id = $_POST['n_id'];
-        $t_name = $_POST['t_name'];
-        $t_designation = $_POST['t_designation'];
-        $t_phone = $_POST['t_phone'];
-        $t_picture = $_POST['old_picture'];
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $designation = $_POST['designation'];
+        $phone = $_POST['phone'];
+        $picture = $_POST['old_picture'];
 
         // check, has image? 
-        if(file_exists($_FILES['t_picture']['tmp_name']) && $_FILES['t_picture']['size'] < 2*1024*1024 ){
+        if(file_exists($_FILES['picture']['tmp_name']) && $_FILES['picture']['size'] < 2*1024*1024 ){
 
           $pro_pic_dir = "uploads/teacher/";
-          $pro_pic_ext = pathinfo($_FILES["t_picture"]["name"], PATHINFO_EXTENSION);
+          $pro_pic_ext = pathinfo($_FILES["picture"]["name"], PATHINFO_EXTENSION);
 
           // Check valid Image or not
           if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png'])){
@@ -38,9 +38,9 @@
 
           // Upload Profile Picture
           $pro_pic_name = time().'.'.$pro_pic_ext;
-          move_uploaded_file($_FILES['t_picture']['tmp_name'], $pro_pic_dir.$pro_pic_name);
+          move_uploaded_file($_FILES['picture']['tmp_name'], $pro_pic_dir.$pro_pic_name);
 
-          $t_picture = $pro_pic_dir.$pro_pic_name;
+          $picture = $pro_pic_dir.$pro_pic_name;
 
           // delete old image
           unlink($_POST['old_picture']);
@@ -49,7 +49,7 @@
 
         
 
-        $sql = "UPDATE `teacher` SET `name`='$t_name',`designation`='$t_designation',`phone`='$t_phone',`picture`='$t_picture' WHERE id = $t_id";
+        $sql = "UPDATE `teacher` SET `name`='$name',`designation`='$designation',`phone`='$phone',`picture`='$picture' WHERE id = $id";
         $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
         if($result){
@@ -102,27 +102,27 @@
                     
                         <div class="form-group mb-4">
                             <label>Teacher Name:</label>
-                            <input name="t_name" type="text" class="form-control form-control-lg" value="<?php echo $data['name'] ?>" required>
+                            <input name="name" type="text" class="form-control form-control-lg" value="<?php echo $data['name'] ?>" required>
                         </div>
                         
                         <div class="form-group mb-4">
                             <label>Designation</label>
-                            <textarea name="t_designation" class="form-control" rows="8"> <?php echo $data['designation'] ?> </textarea>
+                            <input name="designation" type="text" class="form-control form-control-lg" value="<?php echo $data['designation'] ?>" required>
                         </div>
                         
                         <div class="form-group mb-4">
                             <label>Phone</label>
-                            <input name="t_phone" type="text" class="form-control form-control-lg" value="<?php echo $data['phone'] ?>">
+                            <input name="phone" type="text" class="form-control form-control-lg" value="<?php echo $data['phone'] ?>">
                         </div>
                         
                         <div class="form-group">
                             <label>Profile Picture</label>
-                            <input name="old_picture" value="<?php echo $data['picture'] ?>" type="hidden">
-                            <input name="t_picture" id="inputPicture" type="file" class="form-control form-control-lg">
-                            <img class="img-fluid mt-3 mb-3" id="previewPicture" src="<?php echo $data['picture'] ?>" alt="pro-pic" style="height: 100px; width: 150px">
+                            <input name="old_picture" value="<?php echo $data['image'] ?>" type="hidden">
+                            <input name="picture" id="inputPicture" type="file" class="form-control form-control-lg">
+                            <img class="img-fluid mt-3 mb-3" id="previewPicture" src="<?php echo $data['image'] ?>" alt="pro-pic" style="height: 100px; width: 150px">
                         </div>
                         
-                        <input type="hidden" name="n_id" value="<?php echo $data['id'] ?>">
+                        <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">
                     </form>
 
