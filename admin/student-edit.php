@@ -26,6 +26,7 @@
       $email = $_POST['email'];
 
       $class = $_POST['class'];
+      $roll = $_POST['roll'];
       $section = $_POST['section'];
       $year = $_POST['year'];
 
@@ -46,7 +47,7 @@
 
       $present_address = $_POST['present_address'];
       $permanent_address = $_POST['permanent_address'];
-      $image = $old_image;
+      $image = $_POST['old_image'];
       $old_image = $_POST['old_image'];
 
       if($_FILES['image']['size'] > 0){
@@ -76,7 +77,7 @@
         
       }
 
-      $update_sql = "UPDATE `student` SET `full_name`='$full_name', `br_no`='$br_no', `blood_group`='$blood_group', `birth_date`='$birth_date', `gender`='$gender', `phone`='$phone', `email`='$email', `class`='$class', `section`='$section', `department`='$department', `year`='$year', `f_name`='$f_name', `f_occupation`='$f_occupation', `f_nid`='$f_nid', `f_phone`='$f_phone', `m_name`='$m_name', `m_occupation`='$m_occupation', `m_nid`='$m_nid', `m_phone`='$m_phone', `g_name`='$g_name', `g_email`='$g_email', `g_phone`='$g_phone', `g_relationship`='$g_relationship', `present_address`='$present_address', `permanent_address`='$permanent_address', `image`='$image' WHERE `id` = $id";
+      $update_sql = "UPDATE `student` SET `full_name`='$full_name', `br_no`='$br_no', `blood_group`='$blood_group', `birth_date`='$birth_date', `gender`='$gender', `phone`='$phone', `email`='$email', `class`='$class', `roll`='$roll ', `section`='$section', `department`='$department', `year`='$year', `f_name`='$f_name', `f_occupation`='$f_occupation', `f_nid`='$f_nid', `f_phone`='$f_phone', `m_name`='$m_name', `m_occupation`='$m_occupation', `m_nid`='$m_nid', `m_phone`='$m_phone', `g_name`='$g_name', `g_email`='$g_email', `g_phone`='$g_phone', `g_relationship`='$g_relationship', `present_address`='$present_address', `permanent_address`='$permanent_address', `image`='$image' WHERE `id` = $id";
 
       // print($sql);
       // die();
@@ -187,15 +188,15 @@
                                     <div class="form-group mb-4">
                                       <label>Blood Group:</label>
                                       <select id="select" class="form-control" name="blood_group">
-                                          <option disabled>Select Blood Group</option>
-                                          <option  value="A+ve">A+ve</option>
-                                          <option value="A-ve">A-ve</option>
-                                          <option value="B+ve">B+ve</option>
-                                          <option value="B-ve">B-ve</option>
-                                          <option value="O+ve">O+ve</option>
-                                          <option value="O-ve">O-ve</option>
-                                          <option value="AB+ve">AB+ve</option>
-                                          <option value="AB-ve">AB-ve</option>
+                                          <option value="">Select Blood Group</option>
+                                          <option value="a+ve" <?php echo !strcmp($student['blood_group'], 'a+ve') ? 'selected' : '' ?> >A+ve</option>
+                                          <option value="a-ve" <?php echo !strcmp($student['blood_group'], 'a-ve') ? 'selected' : '' ?> >A-ve</option>
+                                          <option value="b+ve" <?php echo !strcmp($student['blood_group'], 'b+ve') ? 'selected' : '' ?> >B+ve</option>
+                                          <option value="b-ve" <?php echo !strcmp($student['blood_group'], 'b-ve') ? 'selected' : '' ?> >B-ve</option>
+                                          <option value="o+ve" <?php echo !strcmp($student['blood_group'], 'o+ve') ? 'selected' : '' ?> >O+ve</option>
+                                          <option value="o-ve" <?php echo !strcmp($student['blood_group'], 'o-ve') ? 'selected' : '' ?> >O-ve</option>
+                                          <option value="ab+ve" <?php echo !strcmp($student['blood_group'], 'ab+ve') ? 'selected' : '' ?> >AB+ve</option>
+                                          <option value="ab-ve" <?php echo !strcmp($student['blood_group'], 'ab-ve') ? 'selected' : '' ?> >AB-ve</option>
                                       </select>
                                   </div>
                                 </div>
@@ -211,51 +212,51 @@
                                   <div class="form-group mb-4">
                                       <label>Gender:</label>
                                       <select id="select" class="form-control" name="gender" required>
-                                          <option disabled selected>Select Gender</option>
-                                          <option value="male">Male</option>
-                                          <option value="female">Female</option>
-                                          <option value="other">Other</option>
-                                      </select>
-                                  </div>
-                                </div>
-                                
-
-                            </div>
-
-                            <div class="row">
-                              
-                                <div class="col">
-                                  <div class="form-group mb-4">
-                                      <label>Group:</label>
-                                      <select id="select" class="form-control" name="department">
-                                          <option disabled selected>Select Group</option>
-                                          <option value="arts">Arts</option>
-                                          <option value="science">Science</option>
-                                          <option value="commerce">Commerce</option>
-                                          <option value="general">General</option>
-                                          <option value="others">Others</option>
+                                          <option value="">Select Gender</option>
+                                          <option value="male" <?php echo !strcmp($student['gender'], 'male') ? 'selected' : '' ?> >Male</option>
+                                          <option value="female" <?php echo !strcmp($student['gender'], 'female') ? 'selected' : '' ?> >Female</option>
+                                          <option value="other" <?php echo !strcmp($student['gender'], 'other') ? 'selected' : '' ?> >Other</option>
                                       </select>
                                   </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="form-group mb-4">
+                                        <label>Session (Year):</label>
+                                        <input name="year" type="number" min="2000" max="2050" value="<?php echo $student['year'] ?>" class="form-control form-control" required>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="form-group mb-4">
                                         <label>Class:</label>
                                         <select id="select" class="form-control" name="class" required>
-                                            <option disabled selected>Select Class</option>
-                                            <option value="i">Class-I</option>
-                                            <option value="ii">Class-II</option>
-                                            <option value="iii">Class-III</option>
-                                            <option value="iv">Class-IV</option>
-                                            <option value="v">Class-V</option>
-                                            <option value="vi">Class-VI</option>
-                                            <option value="vii">Class-VII</option>
-                                            <option value="viii">Class-VIII</option>
-                                            <option value="ix">Class-IX</option>
-                                            <option value="x">Class-X</option>
-                                            <option value="xi">Class-XI</option>
-                                            <option value="xii">Class-XII</option>
+                                            <option value="">Select Class</option>
+                                            <option value="i" <?php echo !strcmp($student['class'], 'i') ? 'selected' : '' ?>>Class-I</option>
+                                            <option value="ii" <?php echo !strcmp($student['class'], 'ii') ? 'selected' : '' ?>>Class-II</option>
+                                            <option value="iii" <?php echo !strcmp($student['class'], 'iii') ? 'selected' : '' ?>>Class-III</option>
+                                            <option value="iv" <?php echo !strcmp($student['class'], 'iv') ? 'selected' : '' ?>>Class-IV</option>
+                                            <option value="v" <?php echo !strcmp($student['class'], 'v') ? 'selected' : '' ?>>Class-V</option>
+                                            <option value="vi" <?php echo !strcmp($student['class'], 'vi') ? 'selected' : '' ?>>Class-VI</option>
+                                            <option value="vii" <?php echo !strcmp($student['class'], 'vii') ? 'selected' : '' ?>>Class-VII</option>
+                                            <option value="viii" <?php echo !strcmp($student['class'], 'viii') ? 'selected' : '' ?>>Class-VIII</option>
+                                            <option value="ix" <?php echo !strcmp($student['class'], 'ix') ? 'selected' : '' ?>>Class-IX</option>
+                                            <option value="x" <?php echo !strcmp($student['class'], 'x') ? 'selected' : '' ?>>Class-X</option>
+                                            <option value="xi" <?php echo !strcmp($student['class'], 'xi') ? 'selected' : '' ?>>Class-XI</option>
+                                            <option value="xii" <?php echo !strcmp($student['class'], 'xii') ? 'selected' : '' ?>>Class-XII</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="form-group mb-4">
+                                        <label>Roll:</label>
+                                        <input name="roll" type="number" min="1" value="<?php echo $student['roll'] ?>" class="form-control form-control">
                                     </div>
                                 </div>
 
@@ -263,26 +264,33 @@
                                   <div class="form-group mb-4">
                                       <label>Section:</label>
                                       <select id="select" class="form-control" name="section" required>
-                                          <option disabled selected>Select Section</option>
-                                          <option value="a">Section-A</option>
-                                          <option value="b">Section-B</option>
-                                          <option value="c">Section-C</option>
-                                          <option value="d">Section-D</option>
-                                          <option value="e">Section-E</option>
-                                          <option value="f">Section-F</option>
-                                          <option value="g">Section-G</option>
-                                          <option value="h">Section-H</option>
-                                          <option value="i">Section-I</option>
-                                          <option value="j">Section-J</option>
+                                          <option value="">Select Section</option>
+                                          <option value="a" <?php echo !strcmp($student['section'], 'a') ? 'selected' : '' ?>>Section-A</option>
+                                          <option value="b" <?php echo !strcmp($student['section'], 'b') ? 'selected' : '' ?>>Section-B</option>
+                                          <option value="c" <?php echo !strcmp($student['section'], 'c') ? 'selected' : '' ?>>Section-C</option>
+                                          <option value="d" <?php echo !strcmp($student['section'], 'd') ? 'selected' : '' ?>>Section-D</option>
+                                          <option value="e" <?php echo !strcmp($student['section'], 'e') ? 'selected' : '' ?>>Section-E</option>
+                                          <option value="f" <?php echo !strcmp($student['section'], 'f') ? 'selected' : '' ?>>Section-F</option>
+                                          <option value="g" <?php echo !strcmp($student['section'], 'g') ? 'selected' : '' ?>>Section-G</option>
+                                          <option value="h" <?php echo !strcmp($student['section'], 'h') ? 'selected' : '' ?>>Section-H</option>
+                                          <option value="i" <?php echo !strcmp($student['section'], 'i') ? 'selected' : '' ?>>Section-I</option>
+                                          <option value="j" <?php echo !strcmp($student['section'], 'j') ? 'selected' : '' ?>>Section-J</option>
                                       </select>
                                   </div>
                                 </div>
 
                                 <div class="col">
-                                    <div class="form-group mb-4">
-                                        <label>Year (Session):</label>
-                                        <input name="year" type="number" min="2000" max="2050" value="<?php echo $student['year'] ?>" class="form-control form-control">
-                                    </div>
+                                  <div class="form-group mb-4">
+                                      <label>Group:</label>
+                                      <select id="select" class="form-control" name="department">
+                                          <option value="">Select Group</option>
+                                          <option value="arts" <?php echo !strcmp($student['department'], 'arts') ? 'selected' : '' ?> >Arts</option>
+                                          <option value="science" <?php echo !strcmp($student['department'], 'science') ? 'selected' : '' ?> >Science</option>
+                                          <option value="commerce" <?php echo !strcmp($student['department'], 'commerce') ? 'selected' : '' ?> >Commerce</option>
+                                          <option value="general" <?php echo !strcmp($student['department'], 'general') ? 'selected' : '' ?> >General</option>
+                                          <option value="others" <?php echo !strcmp($student['department'], 'others') ? 'selected' : '' ?> >Others</option>
+                                      </select>
+                                  </div>
                                 </div>
 
                             </div>

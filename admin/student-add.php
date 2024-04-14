@@ -17,6 +17,7 @@
       $email = $_POST['email'];
 
       $class = $_POST['class'];
+      $roll = $_POST['roll'];
       $section = $_POST['section'];
       $year = $_POST['year'];
 
@@ -60,7 +61,7 @@
           $image = $pro_pic_dir.$pro_pic_name;
       }
         
-      $sql = "INSERT INTO `student`(`full_name`, `br_no`, `blood_group`, `birth_date`, `gender`, `phone`, `email`, `class`, `section`, `department`, `year`, `f_name`, `f_occupation`, `f_nid`, `f_phone`, `m_name`, `m_occupation`, `m_nid`, `m_phone`, `g_name`, `g_email`, `g_phone`, `g_relationship`, `present_address`, `permanent_address`, `image`) VALUES ('$full_name', '$br_no', '$blood_group', '$birth_date', '$gender', '$phone', '$email', '$class', '$section', '$department', '$year', '$f_name', '$f_occupation', '$f_nid', '$f_phone', '$m_name', '$m_occupation', '$m_nid', '$m_phone:', '$g_name', '$g_email', '$g_phone', '$g_relationship', '$present_address', '$permanent_address:', '$image')";
+      $sql = "INSERT INTO `student`(`full_name`, `br_no`, `blood_group`, `birth_date`, `gender`, `phone`, `email`, `class`, `roll`, `section`, `department`, `year`, `f_name`, `f_occupation`, `f_nid`, `f_phone`, `m_name`, `m_occupation`, `m_nid`, `m_phone`, `g_name`, `g_email`, `g_phone`, `g_relationship`, `present_address`, `permanent_address`, `image`) VALUES ('$full_name', '$br_no', '$blood_group', '$birth_date', '$gender', '$phone', '$email', '$class', '$roll', '$section', '$department', '$year', '$f_name', '$f_occupation', '$f_nid', '$f_phone', '$m_name', '$m_occupation', '$m_nid', '$m_phone:', '$g_name', '$g_email', '$g_phone', '$g_relationship', '$present_address', '$permanent_address:', '$image')";
 
       // print($sql);
       // die();
@@ -158,10 +159,10 @@
                                 </div>
 
                                 <div class="col">
-                                      <div class="form-group mb-4">
-                                          <label>Email Address:</label>
-                                          <input name="email" type="email" class="form-control form-control">
-                                      </div>
+                                    <div class="form-group mb-4">
+                                        <label>Email Address:</label>
+                                        <input name="email" type="email" class="form-control form-control">
+                                    </div>
                                 </div>
                             </div>
 
@@ -172,14 +173,14 @@
                                       <label>Blood Group:</label>
                                       <select id="select" class="form-control" name="blood_group">
                                           <option disabled selected>Select Blood Group</option>
-                                          <option value="A+ve">A+ve</option>
-                                          <option value="A-ve">A-ve</option>
-                                          <option value="B+ve">B+ve</option>
-                                          <option value="B-ve">B-ve</option>
-                                          <option value="O+ve">O+ve</option>
-                                          <option value="O-ve">O-ve</option>
-                                          <option value="AB+ve">AB+ve</option>
-                                          <option value="AB-ve">AB-ve</option>
+                                          <option value="a+ve">A+ve</option>
+                                          <option value="a-ve">A-ve</option>
+                                          <option value="b+ve">B+ve</option>
+                                          <option value="b-ve">B-ve</option>
+                                          <option value="o+ve">O+ve</option>
+                                          <option value="o-ve">O-ve</option>
+                                          <option value="ab+ve">AB+ve</option>
+                                          <option value="ab-ve">AB-ve</option>
                                       </select>
                                   </div>
                                 </div>
@@ -203,24 +204,15 @@
                                   </div>
                                 </div>
                                 
-
+                                <div class="col">
+                                    <div class="form-group mb-4">
+                                        <label>Session(Year):</label>
+                                        <input name="year" type="number" min="2000" max="2050" value="<?php echo date('Y'); ?>" class="form-control form-control" required>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">
-                              
-                                <div class="col">
-                                  <div class="form-group mb-4">
-                                      <label>Group:</label>
-                                      <select id="select" class="form-control" name="department">
-                                          <option disabled selected>Select Group</option>
-                                          <option value="arts">Arts</option>
-                                          <option value="science">Science</option>
-                                          <option value="commerce">Commerce</option>
-                                          <option value="general">General</option>
-                                          <option value="others">Others</option>
-                                      </select>
-                                  </div>
-                                </div>
 
                                 <div class="col">
                                     <div class="form-group mb-4">
@@ -244,6 +236,29 @@
                                 </div>
 
                                 <div class="col">
+                                    <div class="form-group mb-4">
+                                        <label>Class Roll:</label>
+                                        <input name="roll" type="number" min="1" class="form-control form-control">
+                                    </div>
+                                </div>
+                              
+                                <div class="col">
+                                  <div class="form-group mb-4">
+                                      <label>Group:</label>
+                                      <select id="select" class="form-control" name="department">
+                                          <option disabled selected>Select Group</option>
+                                          <option value="arts">Arts</option>
+                                          <option value="science">Science</option>
+                                          <option value="commerce">Commerce</option>
+                                          <option value="general">General</option>
+                                          <option value="others">Others</option>
+                                      </select>
+                                  </div>
+                                </div>
+
+                                
+
+                                <div class="col">
                                   <div class="form-group mb-4">
                                       <label>Section:</label>
                                       <select id="select" class="form-control" name="section" required>
@@ -260,13 +275,6 @@
                                           <option value="j">Section-J</option>
                                       </select>
                                   </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="form-group mb-4">
-                                        <label>Year (Session):</label>
-                                        <input name="year" type="number" min="2000" max="2050" value="<?php echo date('Y'); ?>" class="form-control form-control">
-                                    </div>
                                 </div>
 
                             </div>

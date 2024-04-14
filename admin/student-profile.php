@@ -91,18 +91,24 @@
                           <table class="table table-bordered table-sm">
                             <tr>
                               <td>
-                                  <span style="color: wheat">Class:</span> <?php echo $student['class']; ?>
+                                  <span style="color: wheat">Class:</span> <?php echo strtoupper($student['class']); ?>
                               </td>
-                              <td>       
-                                  <span style="color: wheat">Section:</span> <?php echo $student['section']; ?>
+                              <td>
+                                  <span style="color: wheat">Roll:</span> <?php echo $student['roll']; ?>
                               </td>
                             </tr>
                             <tr>
-                              <td> 
-                                  <span style="color: wheat">Group:</span> <?php echo $student['department']; ?>
+                              <td>       
+                                  <span style="color: wheat">Section:</span> <?php echo strtoupper($student['section']); ?>
                               </td>
+                              
                               <td> 
-                                  <span style="color: wheat">Year:</span> <?php echo $student['year']; ?>
+                                  <span style="color: wheat">Session:</span> <?php echo $student['year']; ?>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> 
+                                  <span style="color: wheat">Group:</span> <?php echo ucwords($student['department']); ?>
                               </td>
                             </tr>
                           </table>
