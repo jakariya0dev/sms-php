@@ -94,11 +94,11 @@
                             <td> <img src="<?php echo $row['image'] ?>" alt="slider-image"> </td>
                             
                             <td>
-                              <a href="<?php echo 'feature-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
+                              <a href="<?php echo 'feature-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> Edit</a>
                               <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>" class="d-inline">
                                 <input type="hidden" value="<?php echo $row['id']?>" name="id">
                                 <input type="hidden" value="<?php echo $row['image']?>" name="image">
-                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</button>
                               </form>
                             </td>
                           </tr>

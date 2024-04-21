@@ -87,11 +87,11 @@
                             <td><?php echo $row['date'] ?></td>
                             
                             <td>
-                              <a href="<?php echo 'notice-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
+                              <a href="<?php echo 'notice-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> Edit</a>
                               <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
                                 <input type="hidden" name="n_id" value="<?php echo $row['id']?>">
                                 <input type="hidden" name="n_file" value="<?php echo $row['file']?>">
-                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</button>
                               </form>
                             </td>
                           </tr>

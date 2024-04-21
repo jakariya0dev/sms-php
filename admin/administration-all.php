@@ -94,11 +94,11 @@
                             <td> <img src="<?php echo $row['image'] ?>" alt="pro-pic"> </td>
                             
                             <td>
-                              <a href="<?php echo 'administration-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> </a>
+                              <a href="<?php echo 'administration-edit.php?id='.$row['id']?>" class="btn btn-primary"> <i class="bi bi-pencil-square"></i> Edit</a>
                               <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $row['id']?>">
                                 <input type="hidden" name="image" value="<?php echo $row['image']?>">
-                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                <button type="submit" name="delete_btn" class="btn btn-danger"><i class="bi bi-trash3"></i> Delete</button>
                               </form>
                             </td>
                           </tr>
