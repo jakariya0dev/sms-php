@@ -1,7 +1,7 @@
 <?php 
 
     include_once 'config.php';
-
+    include_once 'auth.php';
   
     $sql = "SELECT * FROM contact WHERE id = 1";
 

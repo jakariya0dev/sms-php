@@ -1,7 +1,8 @@
 <?php 
 
     include_once 'config.php';
-
+    include_once 'auth.php';
+    
     $file_error = false;
 
     if(isset($_POST['submit'])){

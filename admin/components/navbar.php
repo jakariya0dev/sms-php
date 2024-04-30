@@ -1,3 +1,4 @@
+<?php include_once 'auth.php'; ?>
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
     <a class="navbar-brand brand-logo-mini" href="index.php">SMS-PHP</a>
@@ -26,7 +27,7 @@
         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
           <div class="navbar-profile">
             <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+            <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo $_SESSION['admin_email']; ?></p>
             <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
         </a>
@@ -50,7 +51,9 @@
               </div>
             </div>
             <div class="preview-item-content">
-              <p class="preview-subject mb-1">Log out</p>
+              <form action="auth.php" method="POST">
+                <input type="submit" name="logout" value="Logout" class="btn btn-behance">
+              </form>
             </div>
           </a>
           

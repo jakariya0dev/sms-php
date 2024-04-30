@@ -12,6 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Bootstrap demo</title>
 
+
         <?php include_once './section/header-links.php' ?>
     </head>
 

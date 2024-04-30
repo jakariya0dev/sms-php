@@ -1,4 +1,9 @@
-<?php include_once 'config.php'?>
+<?php 
+
+  include_once 'config.php';
+  include_once 'auth.php';
+      
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">

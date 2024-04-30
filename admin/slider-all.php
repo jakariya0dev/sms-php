@@ -1,7 +1,8 @@
 <?php 
 
   include_once 'config.php';
-
+  include_once 'auth.php';
+   
   $error = false;
 
   $sql = "SELECT * FROM slider ORDER BY Id DESC";

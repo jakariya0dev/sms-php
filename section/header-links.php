@@ -9,3 +9,4 @@
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">

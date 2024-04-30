@@ -1,9 +1,7 @@
 <?php 
 
   include_once 'config.php';
-
-
-
+  include_once 'auth.php';
 
   if(isset($_POST["delete_btn"])){
 

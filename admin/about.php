@@ -1,6 +1,7 @@
 <?php 
 
     include_once 'config.php';
+    include_once 'auth.php';
 
   
     $sql = "SELECT * FROM about WHERE id = 1";

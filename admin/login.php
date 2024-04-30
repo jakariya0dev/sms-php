@@ -1,4 +1,20 @@
-<?php include_once 'config.php'?>
+<?php 
+
+  include_once 'config.php';
+
+    session_start();
+    $error = false;
+
+    if(isset($_SESSION['admin_email'])){
+          header('Location: index.php');
+    }
+
+    if(isset($_GET['error'])){
+          $error = true;
+    }
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,18 +34,24 @@
             <div class="card col-lg-3 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-center mb-4">Admin Login</h3>
-                <form>
+                <?php if($error): ?>
+                <div class="alert alert-danger">
+                    Wrong email or password
+                </div>
+                <?php endif; ?>
+
+                <form action="auth.php" method="POST">
                   <div class="form-group">
-                    <label>Username or email *</label>
-                    <input type="text" class="form-control p_input">
+                    <label>Admin email *</label>
+                    <input name="email" type="email" class="form-control p_input" required>
                   </div>
                   <div class="form-group">
                     <label>Password *</label>
-                    <input type="text" class="form-control p_input">
+                    <input name="password" type="password" class="form-control p_input" required>
                   </div>
                   
                   <div class="text-center mt-4">
-                    <button type="submit" class="w-100 btn btn-primary btn-block enter-btn">Login</button>
+                    <button name="login" type="submit" class="w-100 btn btn-primary btn-block enter-btn">Login</button>
                   </div>
                   <hr>
                   <p class="sign-up">

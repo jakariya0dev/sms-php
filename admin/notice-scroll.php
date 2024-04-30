@@ -1,7 +1,8 @@
 <?php 
 
     include_once 'config.php';
-
+    include_once 'auth.php';
+   
     $sql = "SELECT * FROM scroll_notice WHERE id = 1";
 
     $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));

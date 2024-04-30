@@ -1,7 +1,8 @@
 <?php 
 
   include_once 'config.php';
-
+  include_once 'auth.php';
+    
   $sql = "SELECT * FROM gallery ORDER BY Id DESC";
   $result = mysqlI_query($conn, $sql);
 
