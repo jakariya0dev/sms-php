@@ -7,7 +7,7 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 1*1024*1024 ){
 
             $image_dir = "uploads/gallery/";
             $title = $_POST['title'];

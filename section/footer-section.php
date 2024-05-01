@@ -11,7 +11,8 @@
 <section id="#footer">
     <footer class="container">
         <div class="row p-5 text-white">
-            <div class="col">
+
+            <div class="col-md-4 mb-5">
                 <p class="rounded-title text-black">যোগাযোদের তথ্য</p>
                 <div class="footer-h-rule "></div>
                 <div style="color: wheat;">
@@ -24,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col-md-4 mb-5">
                 <p class="rounded-title text-black">গুরুত্বপূর্ণ লিংকস</p>
                 <div class="footer-h-rule"></div>
 
@@ -40,24 +41,27 @@
                     </ul>
                 </div>
             </div>
-            <div class="col">
+
+            <div class="col-md-4 mb-5">
                 <p class="rounded-title text-black">গুগল ম্যাপ</p>
                 <div class="footer-h-rule"></div>
                 <iframe src="<?php echo $contact_result['map'] ?>" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
+
         </div>
 
-        <div class="row text-center bg-primary-dark text-white p-3">
-            <div class="col-md-6 text-start">
+        <div class="row text-center bg-primary-dark text-white px-3 pt-5">
+            <div class="col-md-6 text-center text-md-start">
                 কপিরাইট © <?php echo date("Y"); ?> সর্বস্বত্ব সংরক্ষিত <br>
                 <p><?php echo $institute_name_bn; ?></p>
             </div>
-            <div class="col-md-6 text-end">
+            <div class="col-md-6 text-center text-md-end">
                 কারিগরি সহযোগিতায় <br>
                 <a href="<?php echo $dev_company_web; ?>" class="text-decoration-none" style="color: wheat">
                     <h5><?php echo $dev_company_name_bn; ?></h5>
                 </a>
             </div>
         </div>
+
     </footer>
 </section>

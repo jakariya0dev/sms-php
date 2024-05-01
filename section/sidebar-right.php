@@ -56,7 +56,7 @@
             </div>
 
             <div class="col">
-                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                <a href="#" target="_blank" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-pen-nib display-6 mb-3"></i>
                         <p class="m-0 sidebar-link">রেজাল্ট</p>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="col">
-                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                <a href="admin/index.php" target="_blank" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-address-card display-6 mb-3"></i>
                         <p class="m-0 sidebar-link">স্টুডেন্ট প্রোফাইল</p>

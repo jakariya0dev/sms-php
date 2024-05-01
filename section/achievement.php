@@ -10,7 +10,7 @@
     
         <p class="title">আমাদের অর্জন</p>
 
-        <div class="row" data-aos="fade-up">
+        <div class="row mb-5 mb-md-0" data-aos="fade-up">
             <div class="col-md-6">
                 <div class="achievement-img">
                     <img id="achievementImage" class="img-fluid w-100 h-100" src="<?php echo 'admin/'.mysqli_fetch_assoc($achievement)['image'] ?>" alt="" />

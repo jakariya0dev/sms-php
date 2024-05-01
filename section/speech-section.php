@@ -16,14 +16,14 @@
 
     <div class="speech-item">
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="speech-img text-center">
-                    <img src="<?php echo 'admin/'.$president['image'] ?>" class="img-thumbnail img-fluid w-100 h-100 mb-3" />
+                    <img src="<?php echo 'admin/'.$president['image'] ?>" class="img-thumbnail img-fluid w-100 mb-3" />
                     <h3 class="mb-0"><?php echo $president['name'] ?></h3>
                     <p><?php echo $president['designation'] ?></p>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-md-8">
                 <div class="speech-content">
                     <p> <?php echo $president['speech'] ?> </p>
                     <div class="see-more">
@@ -38,14 +38,14 @@
 
     <div class="speech-item">
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-4 mb-3">
                 <div class="speech-img text-center">
-                    <img src="<?php echo 'admin/'.$principal['image'] ?>" class="img-thumbnail img-fluid w-100 h-100 mb-3" />
+                    <img src="<?php echo 'admin/'.$principal['image'] ?>" class="img-thumbnail img-fluid w-100 mb-3" />
                     <h3 class="mb-0"><?php echo $principal['name'] ?></h3>
                     <p><?php echo $principal['designation'] ?></p>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-md-8 mb-3">
                 <div class="speech-content">
                     <p> <?php echo $principal['speech'] ?> </p>
                     

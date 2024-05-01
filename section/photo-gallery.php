@@ -10,7 +10,7 @@
     <p class="title">ফটো গ্যালারি</p>
 
     <div class="photo-gallery">
-        <div class="row row-cols-4 g-1">
+        <div class="row row-cols-md-4 g-1">
 
         <?php while($row = mysqli_fetch_assoc($galleryResult)): ?>
             <div class="col">

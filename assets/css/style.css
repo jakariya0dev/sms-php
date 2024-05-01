@@ -195,16 +195,20 @@ nav{
 .about-img {
   height: 450px;
 }
+
 /* Speech */
 
 .speech-item {
-  height: 420px;
+  /* height: 420px; */
 }
 .speech-img {
-  height: 320px;
+  /* height: 320px; */
   width: 100%;
 }
 
+.speech-img > img {
+  height: 320px;
+}
 .speech-content > p {
   text-align: justify;
   overflow: hidden;
