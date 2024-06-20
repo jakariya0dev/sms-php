@@ -15,30 +15,48 @@
 
       if($_FILES['file']['size'] > 0){
 
-        if( $_FILES['file']['size'] > 5*1024*1024){
-          return $image_error = true;
+        if( $_FILES['file']['size'] > 2*1024*1024){
+            $file_error = true;
         }
+        else{
 
-        $dir_name = 'uploads/academic/';
+            $dir_name = 'uploads/academic/';
 
-        if (!file_exists($dir_name)) {
-            mkdir($dir_name, 0755, true);
+            if (!file_exists($dir_name)) {
+                mkdir($dir_name, 0755, true);
+            }
+            $file_name = time() .'.'. pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            move_uploaded_file($_FILES['file']['tmp_name'], $dir_name.$file_name);
+
+            $file = $dir_name.$file_name;
+
+            $sql = "INSERT INTO `academic`(`title`, `slug`, `description`, `file`) VALUES ('$title', '$slug', '$description','$file')";
+
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: academic-all.php");
+            }
+            else{
+              echo "<script>Failed to Update</script>";
+            }
+
         }
-        $file_name = time() .'.'. pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        move_uploaded_file($_FILES['file']['tmp_name'], $dir_name.$file_name);
-
-        $file = $dir_name.$file_name;
     
       }
+      else{
 
-      $sql = "INSERT INTO `academic`(`title`, `slug`, `description`, `file`) VALUES ('$title', '$slug', '$description','$file')";
+          $sql = "INSERT INTO `academic`(`title`, `slug`, `description`, `file`) VALUES ('$title', '$slug', '$description','$file')";
 
-      $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+          $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
-      if($result){
-          header("Location: academic-all.php");
+          if($result){
+              header("Location: academic-all.php");
+          }
+          else{
+            echo "<script>Failed to Update</script>";
+          }
       }
-      
 
     }
     
@@ -82,7 +100,7 @@
                     <?php if ($file_error): ?>
                       <div class="alert alert-warning mb-5" role="alert">
                         <h4>You Have Error!</h4> 
-                        Select a valid file (type: jpg, jpeg, png or pdf) with less than 5MB size.
+                        Select a valid file (type: jpg, jpeg, png or pdf) with less than 2MB size.
                       </div>
                     <?php endif; ?>
 

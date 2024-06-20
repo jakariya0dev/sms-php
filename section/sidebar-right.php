@@ -41,144 +41,66 @@
         </div>
     </div>
 
-    <p class="sidebar-header" data-aos="zoom-in">স্টুডেন্ট কর্নার</p>
+    <p class="sidebar-header" data-aos="zoom-in"> নাগরিক সেবা </p>
 
     <div class="student-corner mb-5" data-aos="zoom-in">
         <div class="row row-cols-2 g-3">
             <div class="col">
-                <a href="<?php echo $text_book?>" target="_blank" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-book display-6 mb-3"></i>
-                        <p class="m-0 sidebar-link"> টেক্স বুক</p>
+                        <p class="m-0 sidebar-link"> ট্রেড লাইসেন্স</p>
                     </div>
                 </a>
                 
             </div>
 
             <div class="col">
-                <a href="#" target="_blank" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-pen-nib display-6 mb-3"></i>
-                        <p class="m-0 sidebar-link">রেজাল্ট</p>
+                        <p class="m-0 sidebar-link">প্রত্যয়ন পত্র</p>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="administration-list.php" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-user-tie display-6 mb-3"></i>
-                        <p class="m-0 sidebar-link">গভর্নিং বডি</p>
+                        <p class="m-0 sidebar-link">ওয়ারিশ সনদ</p>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="notice-all.php" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-calendar-days display-6 mb-3"></i>
-                        <p class="m-0 sidebar-link">নোটিশ</p>
+                        <p class="m-0 sidebar-link">চারিত্রিক সনদ</p>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="teacher-list.php" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-person-chalkboard display-6 mb-3"></i>
-                        <p class="m-0 sidebar-link">শিক্ষক তালিকা</p>
+                        <p class="m-0 sidebar-link">নাগরিক আবেদন</p>
                     </div>
                 </a>
             </div>
 
             <div class="col">
-                <a href="admin/index.php" target="_blank" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <div class="sc-item">
                         <i class="fa-solid fa-address-card display-6 mb-3"></i>
-                        <p class="m-0 sidebar-link">স্টুডেন্ট প্রোফাইল</p>
+                        <p class="m-0 sidebar-link">ইমারত আবেদন</p>
                     </div>
                 </a>
             </div>
 
         </div>
-    </div>
-
-    <p class="sidebar-header" data-aos="zoom-in"> একাডেমিক কর্নার</p>
-    <div class="download-corner mb-5" data-aos="zoom-in">
-
-
-        
-
-        <?php if(mysqli_num_rows($academic) > 0) : ?>
-            
-            <?php    while($row = mysqli_fetch_assoc($academic)): ?>
-            
-                <a href="<?php echo 'academic-corner.php?id='.$row['id'] ?>" class="text-decoration-none">
-                    <div class="item bg-success text-white mb-2 d-flex align-items-center">
-                        <span class="me-auto">
-                            <i class="fa-regular fa-square-caret-right"></i>
-                            &nbsp; <?php echo $row['title']?>
-                        </span>
-                    </div>
-                </a>
-
-            <?php endwhile; ?>
-
-        <?php endif; ?>    
-
-        <!-- <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;ক্লাস রুটিন
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
-
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;এক্সাম রুটিন
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
-
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;সিলেবাস
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
-
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;অভিভাবক গাইডলাইন
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
-
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;ড্রেস কোড
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;লেসন প্লান
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div>
-        <div class="item bg-success text-white mb-2 d-flex justify-content-between align-items-center">
-            <span class="me-auto">
-                <i class="fa-solid fa-bars-progress"></i>
-                &nbsp;কোড অব কন্ডাক্ট
-            </span>
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-        </div> -->
     </div>
 
     <p class="sidebar-header" data-aos="zoom-in">জাতীয় সংগীত</p>

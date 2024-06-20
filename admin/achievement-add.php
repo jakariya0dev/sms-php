@@ -7,41 +7,40 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        $image_dir = "uploads/achievement/";
+        $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
-            $image_dir = "uploads/achievement/";
-            if(!is_dir($image_dir)){
-              mkdir($image_dir);
-            }
-            $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+        if($_FILES['image']['size'] < 2*1024*1024 && $_FILES['image']['size'] > 0){
 
-            // Check valid Image or not
-            if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-              $image_error = true;
-              return;
-            }
+            
+              if(!is_dir($image_dir)){
+                mkdir($image_dir);
+              }
 
-            // Upload Achievement Image
-            $image_name = time().'.'.$image_ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
+              // Upload Achievement Image
+              $image_name = time().'.'.$image_ext;
+              move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
 
-            // Seed Achievement Data to Database
-            $title = $_POST['title'];
-            $description = $_POST['description'];
-            $image = $image_dir.$image_name;
+              // Seed Achievement Data to Database
+              $title = $_POST['title'];
+              $description = $_POST['description'];
+              $image = $image_dir.$image_name;
 
-            $sql = "INSERT INTO `achievement`(`title`, `description`, `image`) VALUES ('$title','$description','$image')";
+              $sql = "INSERT INTO `achievement`(`title`, `description`, `image`) VALUES ('$title','$description','$image')";
 
-            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+              $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
-            if($result){
-                header("Location: achievement-all.php");
-            }
-            else{
-                echo "<script>Failed to Add achievement</script>";
-            }
+              if($result){
+                  header("Location: achievement-all.php");
+              }
+              else{
+                  echo "<script>Failed to Add achievement</script>";
+              }
 
           }
+        else{
+            $image_error = true;
+        }
 
     }
 
@@ -102,7 +101,7 @@
 
                         <div class="form-group mb-4">
                             <label>Achievement Image</label>
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" required>
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" accept="image/*" required>
                         </div>
 
                         <div class="form-group mb-4">

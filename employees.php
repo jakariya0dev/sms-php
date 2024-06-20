@@ -30,22 +30,22 @@
                 <nav aria-label="breadcrumb" class="mt-4 position-static">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none">হোম</a></li>
-                        <li class="breadcrumb-item"> শিক্ষক তালিকা </li>
+                        <li class="breadcrumb-item"> কর্মকর্তা-কর্মচারী </li>
                         
                     </ol>
                 </nav>
                 <div class="row mt-4">
                     <div class="col-md-9">
                         <div class="mt-4">
-                            <p class="display-6 text-center mb-3">শিক্ষকমণ্ডলীর তালিকা</p>
+                            <p class="display-6 text-center mb-3">কর্মকর্তা-কর্মচারীর তালিকা</p>
 
                             <?php if(mysqli_num_rows($teacher) > 0) : ?>
                                 <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
                                     <?php while ($row = mysqli_fetch_array($teacher)): ?>
                                         
                                         <div class="col">
-                                            <a href="<?php echo 'teacher.php?id='.$row['id'] ?>" class="text-decoration-none">
-                                                <div class="item mb-5">
+                                            <a href="<?php echo 'employee.php?id='.$row['id'] ?>" class="text-decoration-none">
+                                                <div class="item employee-card mb-5">
                                                     <div class="team-member card">
                                                         <div class="pro-pic card-img-top">
                                                             <img class="img-fluid w-100 h-100" src="<?php echo 'admin./'.$row['image'] ?>" />

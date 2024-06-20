@@ -206,22 +206,23 @@
       </div>
     </li>
 
-    <!--  Student -->
+    <!-- Video Gallery -->
     <li class="nav-item menu-items">
-      <a class="nav-link" data-bs-toggle="collapse" href="#student" aria-expanded="false" aria-controls="ui-basic">
+      <a class="nav-link" data-bs-toggle="collapse" href="#video-list" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
           <i class="mdi mdi-laptop"></i>
         </span>
-        <span class="menu-title">Students</span>
+        <span class="menu-title">Video Gallery</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse" id="student">
+      <div class="collapse" id="video-list">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="student-all.php">All Student</a></li>
-          <li class="nav-item"> <a class="nav-link" href="student-add.php">Add Student</a></li>
+          <li class="nav-item"> <a class="nav-link" href="video-all.php">All Video</a></li>
+          <li class="nav-item"> <a class="nav-link" href="video-add.php">Add Video</a></li>
         </ul>
       </div>
     </li>
+
 
   </ul>
 </nav>

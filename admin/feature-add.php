@@ -7,16 +7,10 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] < 2*1024*1024 && $_FILES['image']['size'] > 0){
 
             $image_dir = "uploads/feature/";
             $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-
-            // Check valid Image or not
-            if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-              $image_error = true;
-              return;
-            }
 
             // Upload Feature Image
             $image_name = time().'.'.$image_ext;
@@ -38,7 +32,10 @@
                 echo "<script>Failed to Add Feature</script>";
             }
 
-          }
+        }
+        else{
+            $image_error = true;
+        }
 
     }
 
@@ -99,7 +96,7 @@
 
                         <div class="form-group mb-4">
                             <label>Feature Image</label>
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" required>
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" accept="image/*" required>
                         </div>
 
                         <div class="form-group mb-4">

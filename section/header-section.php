@@ -1,7 +1,7 @@
     <section>
         <header>
             <div class="banner-top">
-                <img src="./images/banner.jpg" alt="" class="img-fluid" />
+                <img src="./images/banner.png" alt="" class="img-fluid" />
             </div>
             <nav class="navbar navbar-expand-lg bg-primary-dark">
                 <div>
@@ -18,45 +18,27 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php#about">প্রতিষ্ঠান সম্পর্কে</a>
+                                <a class="nav-link text-white" href="index.php#about">বদরগঞ্জ পৌরসভা</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php#speech">বাণী</a>
+                                <a class="nav-link text-white" href="index.php#speech">মেয়র</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php#feature">প্রতিষ্ঠানের বৈশিষ্ট্য</a>
+                                <a class="nav-link text-white" href="index.php#counsellor">কাউন্সিলরবৃন্দ</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php#achievements">প্রতিষ্ঠানের অর্জন</a>
+                                <a class="nav-link text-white" href="index.php#employees">কর্মকর্তা-কর্মচারী</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php#teachers">শিক্ষক মণ্ডলী</a>
+                                <a class="nav-link text-white" href="index.php#photo-gallery">ফটো গ্যালারি</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="index.php#gallery">ফটো গ্যালারি</a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    ডাউনলোড কর্নার
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </li>
-                                </ul>
+                                <a class="nav-link text-white" href="index.php#video-gallery">ভিডিও গ্যালারি</a>
                             </li>
 
                         </ul>

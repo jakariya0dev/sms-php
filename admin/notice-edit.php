@@ -22,7 +22,7 @@
         $n_file = $_POST['n_file'];
         $n_date = $_POST['n_date'];
 
-        if(isset($_FILES['n_file']['name'])){
+        if($_FILES['n_file']['size'] > 0){
 
           $dir_name = 'uploads/notice/';
           if (!file_exists($dir_name)) { mkdir($dir_name, 0755, true); }
@@ -86,7 +86,7 @@
                     <hr class="mb-5">
 
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
                     
                         <div class="form-group">
                             <label>Notice Title</label>

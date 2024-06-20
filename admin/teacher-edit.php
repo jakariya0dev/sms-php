@@ -26,38 +26,56 @@
         $image = $_POST['old_image'];
 
         // check, has image? 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] > 0  ){
 
           $pro_pic_dir = "uploads/teacher/";
           $pro_pic_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
           // Check valid Image or not
-          if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png'])){
-            $pro_pic_error = true;
-            return;
+          if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 2*1024*1024 ){
+            
+              $pro_pic_error = true;
+
+          }
+          else{
+
+              // Upload Profile Picture
+              $pro_pic_name = time().'.'.$pro_pic_ext;
+              move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
+
+              $image = $pro_pic_dir.$pro_pic_name;
+
+              // delete old image
+              unlink($_POST['old_image']);
+
+              // Seeding database
+              $sql = "UPDATE `teacher` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
+              $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+              if($result){
+                  header("Location: teacher-all.php");
+              }
+              else{
+                  echo "<script>Failed to Update Teacher</script>";
+              }
+
           }
 
-          // Upload Profile Picture
-          $pro_pic_name = time().'.'.$pro_pic_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
+          
 
-          $image = $pro_pic_dir.$pro_pic_name;
-
-          // delete old image
-          unlink($_POST['old_image']);
-
-        }
-
-        
-
-        $sql = "UPDATE `teacher` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: teacher-all.php");
         }
         else{
-            echo "<script>Failed to Update Teacher</script>";
+
+            $sql = "UPDATE `teacher` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: teacher-all.php");
+            }
+            else{
+                echo "<script>Failed to Update Teacher</script>";
+            }
+
         }
 
     }
@@ -99,7 +117,7 @@
                     <hr class="mb-5">
 
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
                     
                         <div class="form-group mb-4">
                             <label>Teacher Name:</label>

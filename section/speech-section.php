@@ -12,7 +12,7 @@
 ?>
 
 <section id="speech">
-    <p class="title">সভাপতির বাণী</p>
+    <p class="title">পৌর মেয়র</p>
 
     <div class="speech-item">
         <div class="row">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-
+<!-- 
     <p class="title">অধ্যক্ষ্যের বাণী</p>
 
     <div class="speech-item">
@@ -56,4 +56,5 @@
             </div>
         </div>
     </div>
+     -->
 </section>

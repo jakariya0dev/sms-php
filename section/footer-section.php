@@ -19,7 +19,7 @@
                     ইমেইল: <?php echo $contact_result['email'] ?> <br>
                     ফোন: <?php echo $contact_result['phone'] ?> <br>
                 </div>
-                <h4 class="mt-4">ঠিকানাঃ</h4>
+                <h4 class="mt-4">অফিস অ্যাড্রেসঃ</h4>
                 <div style="color: wheat;">
                    <?php echo $contact_result['address'] ?> <br>
                 </div>
@@ -31,13 +31,13 @@
 
                 <div class="links">
                     <ul class="important-links">
-                        <li><a href="https://muktopaath.gov.bd/" target="_blank">মুক্তপাঠ</a></li>
-                        <li><a href="https://www.teachers.gov.bd/" target="_blank">শিক্ষক বাতায়ন</a></li>
-                        <li><a href="https://rajshahieducationboard.gov.bd/" target="_blank">রাজশাহী শিক্ষা বোর্ড</a></li>
-                        <li><a href="https://dshe.gov.bd/" target="_blank">মাধ্যমিক ও উচ্চশিক্ষা অধিদপ্তর</a></li>
-                        <li><a href="http://www.educationboardresults.gov.bd/" target="_blank">শিক্ষা বোর্ড রেজাল্ট</a></li>
-                        <li><a href="https://bangldesh.gov.bd/" target="_blank">বাংলাদেশ জাতীয় তথ্য বাতায়ন</a></li>
-                        <li><a href="https://banbeis.gov.bd/" target="_blank">বাংলাদেশ শিক্ষাতথ্য ও পরিসংখ্যান ব্যুরো (ব্যানবেইস)</a></li>
+                        <li><a href="http://www.pmo.gov.bd/" target="_blank">প্রধানমন্ত্রীর কার্যালয়</a></li>
+                        <li><a href="https://bangabhaban.gov.bd/" target="_blank">রাষ্ট্রপতির কার্যালয়</a></li>
+                        <li><a href="http://bris.lgd.gov.bd/pub/?pg=verify_br" target="_blank">জন্ম নিবন্ধন যাচাই</a></li>
+                        <li><a href="https://www.mopa.gov.bd/" target="_blank">জনপ্রশাসন মন্ত্রণালয়</a></li>
+                        <li><a href="https://bangldesh.gov.bd/" target="_blank">জাতীয় তথ্য বাতায়ন</a></li>
+                        <li><a href="https://cabinet.gov.bd/" target="_blank">মন্ত্রীপরিষদ বিভাগ</a></li>
+                        <li><a href="https://lgd.gov.bd/" target="_blank">স্থানীয় সরকার বিভাগ</a></li>
                     </ul>
                 </div>
             </div>
@@ -53,7 +53,7 @@
         <div class="row text-center bg-primary-dark text-white px-3 pt-5">
             <div class="col-md-6 text-center text-md-start">
                 কপিরাইট © <?php echo date("Y"); ?> সর্বস্বত্ব সংরক্ষিত <br>
-                <p><?php echo $institute_name_bn; ?></p>
+                <p><?php echo $ins_name_bn; ?></p>
             </div>
             <div class="col-md-6 text-center text-md-end">
                 কারিগরি সহযোগিতায় <br>

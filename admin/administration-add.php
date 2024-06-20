@@ -14,7 +14,7 @@
         $image = '';
         $email = $_POST['email'];
 
-        if( $_FILES['image']['size'] > 0 ){
+        if( $_FILES['image']['size'] < 2*1024*1024 && $_FILES['image']['size'] > 0 ){
 
             $img_dir = "uploads/administration/";
             if (!file_exists($img_dir)) {
@@ -23,30 +23,27 @@
 
             $pro_pic_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
-            // Check valid Image or not
-            if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 5*1024*1024 ){
-              return $pro_pic_error = true;
-            }
-
             // Upload Profile Picture
             $img_name = time().'.'.$pro_pic_ext;
             move_uploaded_file($_FILES['image']['tmp_name'], $img_dir.$img_name);
             $image = $img_dir.$img_name;
 
+            $sql = "INSERT INTO `administration`(`name`, `designation`, `phone`, `email`, `image`) VALUES ('$name', '$designation', '$phone', '$email', '$image');";
+
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: administration-all.php");
+            }
+            else{
+                echo "<script>failed to Updated</script>";
+            }
+
         }
-        
-        
-        
-        $sql = "INSERT INTO `administration`(`name`, `designation`, `phone`, `email`, `image`) VALUES ('$name', '$designation', '$phone', '$email', '$image');";
-
-        // print($sql);
-        // die();
-
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: administration-all.php");
+        else{
+            $pro_pic_error = true;
         }
+
 
     }
 
@@ -117,7 +114,7 @@
 
                         <div class="form-group mb-4">
                             <label>Profile Picture</label>
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" accept="image/*" required>
                         </div>
 
                         <div class="form-group mb-4">

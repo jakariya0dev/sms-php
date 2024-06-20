@@ -72,7 +72,9 @@ body {
   padding: 8px 15px;
   margin-top: 80px;
   margin-bottom: 30px;
+  border-bottom: 6px solid var(--green-accent);
 }
+
 
 .rounded-title {
   font-size: var(--headline-font);
@@ -128,6 +130,7 @@ body {
   text-align: center;
   padding: 10px 0;
   margin-bottom: 15px;
+  border-bottom: 6px solid var(--green-accent);
 }
 
 .sidebar-link{
@@ -156,7 +159,8 @@ nav{
 .nav-item:hover {
   padding-left: 10px;
   padding-right: 10px;
-  background: var(--bg-primary);
+  background: var(--green-accent);
+  color: black;
 }
 
 /* Hero Section */
@@ -165,12 +169,12 @@ nav{
   height: 350px;
 }
 
-.carousel-item {
-  background-color: #005b96;
+.carousel-caption h2, .carousel-caption p{
+  text-shadow: 2px 2px 5px black;
 }
 
 .carousel-item img {
-  mix-blend-mode: overlay;
+  /* mix-blend-mode: overlay; */
 }
 
 .breaking-title{
@@ -244,19 +248,40 @@ nav{
 
 .gallery-item {
   overflow: hidden;
-  height: 225px;
+  height: 180px;
   width: 100%;
+  background-color: #FDA403;
 }
 
-.gallery-item > img {
-  overflow: hidden;
-  transition: all 2s;
+.gallery-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: all 1s;
 }
 
-.gallery-item:hover > img {
+.gallery-item:hover img {
   transform: scale(1.2);
 }
+
 /* Team Section  */
+
+.counsellor{
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  box-shadow: 0 0 10px 2px rgba(65, 29, 93, 0.2);
+}
+
+.counsellor:hover{
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  box-shadow: 0 0 10px 12px rgba(65, 29, 93, 0.2);
+}
+
+.employee-card:hover{
+  box-shadow: 0 0 2px 5px gray;
+}
 
 .team-member .pro-pic {
   height: 225px;

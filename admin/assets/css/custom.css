@@ -15,7 +15,7 @@ option{
 }
 
 .custom-text-area, .custom-text-area:focus{
-    height: 250px; 
+    height: 250px !important; 
     color: wheat; 
     line-height: 24px;
 }

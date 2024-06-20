@@ -14,6 +14,15 @@
         $data = mysqli_fetch_assoc($result);
 
     }
+    else{
+
+        $id = $_POST['id'];
+        $sql = "SELECT * FROM `administration` WHERE id = $id";
+
+        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+        $data = mysqli_fetch_assoc($result);
+
+    }
 
 
     if(isset($_POST['update_btn'])){
@@ -32,30 +41,47 @@
           $img_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
           // Check valid Image or not
-          if(!in_array($img_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 5*1024*1024){
-            return $pic_error = true;
+          if(!in_array($img_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 2*1024*1024){
+              $pic_error = true;
+          }
+          else{
+              // Upload Profile image
+              $img_name = time().'.'.$img_ext;
+              move_uploaded_file($_FILES['image']['tmp_name'], $img_dir.$img_name);
+
+              $image = $img_dir.$img_name;
+
+              // delete old image
+              unlink($_POST['old_image']);
+
+              // Seeding Database
+              $sql = "UPDATE `administration` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
+              $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+              if($result){
+                  header("Location: administration-all.php");
+              }
+              else{
+                  echo "<script>Failed to Update Administration</script>";
+              }
           }
 
-          // Upload Profile image
-          $img_name = time().'.'.$img_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $img_dir.$img_name);
+          
 
-          $image = $img_dir.$img_name;
-
-          // delete old image
-          unlink($_POST['old_image']);
-
-        }
-
-        $sql = "UPDATE `administration` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: administration-all.php");
         }
         else{
-            echo "<script>Failed to Update Administration</script>";
+            $sql = "UPDATE `administration` SET `name`='$name',`designation`='$designation',`phone`='$phone',`image`='$image' WHERE id = $id";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: administration-all.php");
+            }
+            else{
+                echo "<script>Failed to Update Administration</script>";
+            }
         }
+
+        
 
     }
 
@@ -95,8 +121,15 @@
                     
                     <hr class="mb-5">
 
+                    <?php if ($pic_error): ?>
+                      <div class="alert alert-warning mb-5" role="alert">
+                        <h4>You Have Error!</h4> 
+                        Select a valid file (type: jpg, jpeg, png or pdf) with less than 2MB size.
+                      </div>
+                    <?php endif; ?>
+
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?=id'.$id ?>" method="post" enctype="multipart/form-data">
                     
                         <div class="form-group mb-4">
                             <label>Teacher Name:</label>
@@ -105,7 +138,7 @@
                         
                         <div class="form-group mb-4">
                             <label>Designation</label>
-                            <input name="name" type="text" class="form-control form-control-lg" value="<?php echo $data['name'] ?>" required>
+                            <input name="designation" type="text" class="form-control form-control-lg" value="<?php echo $data['name'] ?>" required>
                         </div>
                         
                         <div class="form-group mb-4">

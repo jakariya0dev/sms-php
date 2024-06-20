@@ -3,11 +3,11 @@
     include_once 'config.php';
     include_once 'auth.php';
    
-    $image_error = false;
+    $file_error = false;
 
     if(isset($_POST['submit'])){
 
-        if(isset($_FILES['n_file']['name']) && $_FILES['n_file']['size'] < 5*1024*1024){
+        if($_FILES['image']['size'] < 5*1024*1024 && $_FILES['image']['size'] > 0){
 
           $dir_name = 'uploads/notice/';
 
@@ -28,14 +28,14 @@
 
           if($result){
               header("Location: notice-all.php");
-              
+          }
+          else{
+            echo "<script>Failed to Add Notice</script>";
           }
 
         }
-
-        
         else{
-            $image_error = true;
+            $file_error = true;
         }
 
     }
@@ -77,10 +77,10 @@
                     
                     <hr class="mb-5">
 
-                    <?php if ($image_error): ?>
+                    <?php if ($file_error): ?>
                       <div class="alert alert-warning mb-5" role="alert">
                         <h4>You Have Error!</h4> 
-                        Select a valid image file (type: jpg, jpeg, png) with less than 5MB size.
+                        Select a valid file with less than 5MB size.
                       </div>
                     <?php endif; ?>
 

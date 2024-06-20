@@ -8,7 +8,7 @@
 
 <section id="achievements">
     
-        <p class="title">আমাদের অর্জন</p>
+        <p class="title">এক নজরে পৌরসভা</p>
 
         <div class="row mb-5 mb-md-0" data-aos="fade-up">
             <div class="col-md-6">

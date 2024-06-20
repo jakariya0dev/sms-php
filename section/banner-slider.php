@@ -30,9 +30,10 @@
                     <?php $i=1; while($row = mysqli_fetch_assoc($slider_result)): ?>
                     <div class="carousel-item <?php echo $i==1 ? 'active' : ''; $i++; ?>">
                         <img src="<?php echo './admin/'.$row['image'] ?>" class="d-block w-100 h-100 banner-img"/>
+                        <div class="overlay">rweggeawg</div>
                         <div class="carousel-caption d-none d-md-block">
                             <h2><?php echo $row['title'] ?></h5>
-                            <p><?php echo $row['subtitle'] ?></p>
+                            <!-- <p><?php echo $row['subtitle'] ?></p> -->
                         </div>
                     </div>
                     <?php endwhile; ?>

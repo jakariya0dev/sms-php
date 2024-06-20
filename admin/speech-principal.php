@@ -19,39 +19,40 @@
         $speech = $_POST['speech'];
         $image = $_POST['image_old'];
 
-        // check, has image? 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] > 0 ){
 
-          $image_dir = "uploads/speech/";
-          $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-
-          // Check valid Image or not
-          if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
+          // check image? 
+          if(!in_array($pic_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 2 * 1024 * 1024){
             $image_error = true;
-            return;
+          }
+          else{
+
+            $image_dir = "uploads/speech/";
+            $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+
+            // Upload Profile Picture
+            $image_name = time().'.'.$image_ext;
+            move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
+
+            $image = $image_dir.$image_name;
+
+            // delete old image
+            unlink($_POST['image_old']);
+
+            $sql = "UPDATE `speech` SET `name`='$name',`designation`='$designation', `speech`='$speech', `image`='$image' WHERE id = 2";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
           }
 
-          // Upload Profile Picture
-          $image_name = time().'.'.$image_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
-
-          $image = $image_dir.$image_name;
-
-          // delete old image
-          unlink($_POST['image_old']);
-
-        }
-
-        $sql = "UPDATE `speech` SET `name`='$name',`designation`='$designation', `speech`='$speech', `image`='$image' WHERE id = 2";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: ".$_SERVER['PHP_SELF']);
         }
         else{
-            echo "<script>Failed to Update Speech</script>";
-        }
 
+          $sql = "UPDATE `speech` SET `name`='$name',`designation`='$designation', `speech`='$speech', `image`='$image' WHERE id = 2";
+          $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+          
+        }
+        
+        header('Location: '.$_SERVER['PHP_SELF']);
     }
 
 ?>
@@ -114,13 +115,13 @@
 
                         <div class="form-group">
                             <label>Principal Speech</label>
-                            <textarea name="speech" class="form-control form-control-lg custom-text-area"><?php echo $president['speech'] ?></textarea>
+                            <textarea name="speech" class="form-control custom-text-area"><?php echo $president['speech'] ?></textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Principal Image</label>
                             <input name="image_old" type="hidden" value="<?php echo $president['image'] ?>">
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" accept="image/*">
                         </div>
 
                         <div class="form-group">

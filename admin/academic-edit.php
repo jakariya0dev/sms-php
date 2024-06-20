@@ -28,28 +28,55 @@
         if($_FILES['file']['size'] > 0 ){
 
           if($_FILES['file']['size'] > 5*1024*1024){
-            return $file_error = true;
-          }
 
-          $dir_name = 'uploads/academic/';
-          if (!file_exists($dir_name)) { mkdir($dir_name, 0755, true); }
-          $file_name = time() .'.'. pathinfo( $_FILES['file']['name'], PATHINFO_EXTENSION );
-          move_uploaded_file($_FILES['file']['tmp_name'], $dir_name.$file_name);
-          if(file_exists($_POST['old_file'])){
-            unlink($_POST['old_file']);
+            $file_error = true;
+
           }
-          $file = $dir_name.$file_name;
+          else{
+
+              $dir_name = 'uploads/academic/';
+              if (!file_exists($dir_name)) { mkdir($dir_name, 0755, true); }
+              $file_name = time() .'.'. pathinfo( $_FILES['file']['name'], PATHINFO_EXTENSION );
+              move_uploaded_file($_FILES['file']['tmp_name'], $dir_name.$file_name);
+
+              if(file_exists($_POST['old_file'])){
+                unlink($_POST['old_file']);
+              }
+              
+              $file = $dir_name.$file_name;
+
+              $sql = "UPDATE `academic` SET `title`='$title', `slug` = '$slug', `description`='$description', `file`='$file' WHERE `id` = $id";
+              $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+              if($result){
+
+                  header("Location: academic-all.php");
+
+              }
+              else{
+
+                  echo "<script>Failed to Update </script>";
+
+              }
+          }
 
         }
+        else{
 
-        
+            $sql = "UPDATE `academic` SET `title`='$title', `slug` = '$slug', `description`='$description', `file`='$file' WHERE `id` = $id";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
-        $sql = "UPDATE `academic` SET `title`='$title', `slug` = '$slug', `description`='$description', `file`='$file' WHERE `id` = $id";
-        // die($sql);
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+            if($result){
 
-        if($result){
-            header("Location: academic-all.php");
+                header("Location: academic-all.php");
+
+            }
+            else{
+
+                echo "<script>Failed to Update </script>";
+                
+            }
+
         }
 
     }
@@ -98,11 +125,11 @@
                     <?php endif; ?>
 
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
 
                         <div class="form-group">
-                            <label>Title</label>
-                            <input name="title" type="text" value="<?php echo $data['title'] ?>" class="form-control form-control-lg">
+                            <label>Title (Max: 20 character)</label>
+                            <input maxlength="20" name="title" type="text" value="<?php echo $data['title'] ?>" class="form-control form-control-lg">
                         </div>
                         
                         <div class="form-group">

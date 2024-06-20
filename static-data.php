@@ -4,8 +4,8 @@
 
 
     // Institute Information
-    $institute_name = 'Sunflower School and College';
-    $institute_name_bn = 'সানফ্লোয়ার স্কুল এন্ড কলেজ, রংপুর';
+    $ins_name_en = 'Badarganj Pourasava';
+    $ins_name_bn = 'বদরগঞ্জ পৌরসভা';
 
     // Developer Information
     $dev_company_name = 'Bitwiser Labs';

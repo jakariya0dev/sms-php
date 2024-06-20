@@ -5,15 +5,7 @@
     
     $image_error = false;
 
-    if(isset($_GET['id'])){
 
-        $id = $_GET['id'];
-        $sql = "SELECT * FROM achievement WHERE id = $id";
-
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-        $data = mysqli_fetch_assoc($result);
-
-    }
 
     if(isset($_POST['update_btn'])){
 
@@ -23,39 +15,72 @@
         $description = $_POST['description'];
         $image = $_POST['old_image'];
 
-        // check, has image? 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        // check image? 
+        if($_FILES['image']['size'] > 0 ){
 
           $image_dir = "uploads/achievement/";
           $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
-          // Check valid Image or not
-          if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
+          if(!in_array($image_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 5 * 1024 * 1024){
             $image_error = true;
-            return;
+          }
+          else{
+
+            // Upload Profile Picture
+            $image_name = time().'.'.$image_ext;
+            move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
+
+            $image = $image_dir.$image_name;
+
+            // delete old image
+            unlink($_POST['old_image']);
+
+            // Seeding database
+            $sql = "UPDATE `achievement` SET `title`='$title',`description`='$description',`image`='$image' WHERE id = $id";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+              header("Location: achievement-all.php");
+            }
+            else{
+                echo "<script>Failed to Update achievement</script>";
+            }
+
           }
 
-          // Upload Profile Picture
-          $image_name = time().'.'.$image_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
-
-          $image = $image_dir.$image_name;
-
-          // delete old image
-          unlink($_POST['old_image']);
-
-        }
-
-        $sql = "UPDATE `achievement` SET `title`='$title',`description`='$description',`image`='$image' WHERE id = $id";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: achievement-all.php");
         }
         else{
-            echo "<script>Failed to Update achievement</script>";
+
+          $sql = "UPDATE `achievement` SET `title`='$title',`description`='$description',`image`='$image' WHERE id = $id";
+          $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+          if($result){
+              header("Location: achievement-all.php");
+          }
+          else{
+              echo "<script>Failed to Update achievement</script>";
+          }
+
         }
 
+
+    }
+
+    if(isset($_GET['id'])){
+
+      $id = $_GET['id'];
+      $sql = "SELECT * FROM achievement WHERE id = $id";
+
+      $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+      $data = mysqli_fetch_assoc($result);
+
+    }
+    else{
+      $id = $_POST['id'];
+      $sql = "SELECT * FROM achievement WHERE id = $id";
+
+      $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+      $data = mysqli_fetch_assoc($result);
     }
 
 ?>
@@ -94,8 +119,15 @@
                     
                     <hr class="mb-5">
 
+                    <?php if ($image_error): ?>
+                      <div class="alert alert-warning mb-5" role="alert">
+                        <h4>You Have Error!</h4> 
+                        Select a valid file (type: jpg, jpeg, png or pdf) with less than 2MB size.
+                      </div>
+                    <?php endif; ?>
+
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
                     
                         <div class="form-group">
                             <label>Achievement Title</label>

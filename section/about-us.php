@@ -9,7 +9,7 @@
 
 <section id="about">
     <div>
-        <p class="title" style="margin-top: 0">আমাদের প্রতিষ্ঠান সম্পর্কে</p>
+        <p class="title" style="margin-top: 0"> <?php echo $ins_name_bn ?> </p>
 
         <div class="row">
             <div class="col-md-6 mb-3">
@@ -25,7 +25,7 @@
                     </div>
                     
                     <div class="see-more">
-                        <p class=""><a class="text-decoration-none" href="pages/speech.php">বিস্তারিত পড়ুন</a></p>
+                        <p class=""><a class="text-decoration-none" href="about.php">বিস্তারিত পড়ুন</a></p>
                     </div>
                 </div>
             </div>

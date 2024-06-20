@@ -24,37 +24,57 @@
         $image = $_POST['old_image'];
 
         // check, has image? 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] > 0 ){
 
-          $image_dir = "uploads/feature/";
-          $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+            $image_dir = "uploads/feature/";
+            $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
 
-          // Check valid Image or not
-          if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-            $image_error = true;
-            return;
-          }
+            // Check valid Image or not
+            if(!in_array($image_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 2*1024*1024 ){
+                $image_error = true;
+            }
+            else{
 
-          // Upload Profile Picture
-          $image_name = time().'.'.$image_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
+                // Upload Profile Picture
+                $image_name = time().'.'.$image_ext;
+                move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
 
-          $image = $image_dir.$image_name;
+                $image = $image_dir.$image_name;
 
-          // delete old image
-          unlink($_POST['old_image']);
+                // delete old image
+                unlink($_POST['old_image']);
 
-        }
+                $sql = "UPDATE `feature` SET `title`='$title',`subtitle`='$subtitle',`image`='$image' WHERE id = $id";
+                $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
-        $sql = "UPDATE `feature` SET `title`='$title',`subtitle`='$subtitle',`image`='$image' WHERE id = $id";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+                if($result){
 
-        if($result){
-            header("Location: feature-all.php");
+                    header("Location: feature-all.php");
+
+                }
+                else{
+
+                    echo "<script>Failed to Update feature</script>";
+
+                }
+
+            }
+
         }
         else{
-            echo "<script>Failed to Update feature</script>";
+
+            $sql = "UPDATE `feature` SET `title`='$title',`subtitle`='$subtitle',`image`='$image' WHERE id = $id";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: feature-all.php");
+            }
+            else{
+                echo "<script>Failed to Update feature</script>";
+            }
         }
+
+        
 
     }
 
@@ -95,7 +115,7 @@
                     <hr class="mb-5">
 
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
                     
                         <div class="form-group">
                             <label>Feature Title</label>

@@ -37,7 +37,7 @@
                     <div class="col-md-9">
                         
                         <div>
-                            <p class="title" style="margin-top: 0">সভাপতির বাণী</p>
+                            <p class="title" style="margin-top: 0">মেয় বাণী</p>
 
                             <div class="card mb-3">
                                     <div class="row gx-3">
@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="d-flex flex-column justify-content-center h-100">
-                                                <p class="card-title display-6"><?php echo $president['name'] ?></p>
+                                                <h5 class="card-title"><?php echo $president['name'] ?></h5>
                                                 <h4 class="card-text"><?php echo $president['designation'] ?></h4>
                                             </div>
                                         </div>

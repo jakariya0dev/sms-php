@@ -20,36 +20,45 @@
         $image = $_POST['image_old'];
 
         // check, has image? 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] > 0 ){
 
-          $image_dir = "uploads/speech/";
-          $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+          if($_FILES['image']['size'] > 5 * 1024 * 1024){
+              $image_error = true;
+          }
+          else{
 
-          // Check valid Image or not
-          if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-            $image_error = true;
-            return;
+              $image_dir = "uploads/speech/";
+              $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+
+              if (!file_exists($image_dir)) { 
+                  mkdir($image_dir, 0755, true); 
+                }
+
+              // Upload Profile Picture
+              $image_name = time().'.'.$image_ext;
+              move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
+
+              $image = $image_dir.$image_name;
+
+              $sql = "UPDATE `speech` SET `name`='$name',`designation`='$designation', `speech`='$speech', `image`='$image' WHERE id = 1";
+              $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+              // delete old image
+              unlink($_POST['image_old']);
           }
 
-          // Upload Profile Picture
-          $image_name = time().'.'.$image_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $image_dir.$image_name);
-
-          $image = $image_dir.$image_name;
-
-          // delete old image
-          unlink($_POST['image_old']);
-
-        }
-
-        $sql = "UPDATE `speech` SET `name`='$name',`designation`='$designation', `speech`='$speech', `image`='$image' WHERE id = 1";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: ".$_SERVER['PHP_SELF']);
         }
         else{
-            echo "<script>Failed to Update Speech</script>";
+
+            $sql = "UPDATE `speech` SET `name`='$name',`designation`='$designation', `speech`='$speech', `image`='$image' WHERE id = 1";
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: ".$_SERVER['PHP_SELF']);
+            }
+            else{
+                echo "<script>Failed to Update Speech</script>";
+            }
         }
 
     }
@@ -92,6 +101,12 @@
                     
                     <hr class="mb-5">
 
+                    <?php if ($image_error): ?>
+                      <div class="alert alert-warning mb-5" role="alert">
+                        <h4>You Have Error!</h4> 
+                        Select a valid image file (type: jpg, jpeg, png) with less than 2MB size.
+                      </div>
+                    <?php endif; ?>
                     
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
                     
@@ -108,23 +123,21 @@
 
                         <div class="form-group">
                             <label>President Speech</label>
-                            <textarea name="speech" class="form-control form-control-lg" style="height: 250px; line-height: 24px; color: wheat;"><?php echo $president['speech'] ?></textarea>
-                        </div>5
+                            <textarea name="speech" class="form-control custom-text-area"><?php echo $president['speech'] ?></textarea>
+                        </div>
 
                         <div class="form-group">
                             <label>President Image</label>
                             <input name="image_old" type="hidden" value="<?php echo $president['image'] ?>">
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" accept="image/*">
                         </div>
 
                         <div class="form-group">
-                            <img id="previewImage" src="<?php echo $president['image'] ?>" alt="slider-image" class="img-fluid" style="height: 100px; width: 150px">
+                            <img id="previewImage" src="<?php echo $president['image'] ?>" alt="por-pic" class="img-fluid" style="height: 100px; width: 150px">
                         </div>
                         
                         <input type="submit" value="Save Changes" name="update_btn" class="btn btn-primary">
                     </form>
-
-
 
                   </div>
                 </div>

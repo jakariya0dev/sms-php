@@ -1,6 +1,7 @@
 <?php 
   
   include_once 'config.php';
+  include_once 'static-data.php';
   
 ?>
 
@@ -10,7 +11,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Bootstrap demo</title>
+        <title><?php echo $ins_name_bn.' | '.$ins_name_en. 'offical website' ?></title>
 
 
         <?php include_once './section/header-links.php' ?>
@@ -41,13 +42,21 @@
                     </div>
                 </div>
 
-                 <!-- Team Section START  -->
-                <?php include_once './section/teacher-slider.php' ?>
-                <!-- Team Section END  -->
+                <!-- Counsellor Section START  -->
+                <?php include_once './section/counsellor.php' ?>
+                <!-- Counsellor Section END  -->
+
+                 <!-- Teacher Section START  -->
+                <?php include_once './section/officials.php' ?>
+                <!-- Teacher Section END  -->
 
                 <!-- Photo Gallery Start -->
                 <?php include_once './section/photo-gallery.php' ?>
                 <!-- Photo Gallery End -->
+
+                <!-- Video Gallery Start -->
+                <?php include_once './section/video-gallery.php' ?>
+                <!-- Video Gallery End -->
 
                 <!-- Footer Section START  -->
                 <?php include_once './section/footer-section.php' ?>

@@ -41,15 +41,10 @@
       $permanent_address = $_POST['permanent_address'];
       $image = '';
 
-      if($_FILES['image']['size'] > 0){
+      if($_FILES['image']['size'] < 2*1024*1024 && $_FILES['image']['size'] > 0){
 
           $pro_pic_dir = "uploads/student/";
           $pro_pic_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-
-          // Check valid Image or not
-          if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 2 * 1024 * 1024){
-            return $pro_pic_error = true;
-          }
 
           if (!file_exists($pro_pic_dir)) {
               mkdir($pro_pic_dir, 0755, true);
@@ -60,17 +55,20 @@
           move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
 
           $image = $pro_pic_dir.$pro_pic_name;
+
+          $sql = "INSERT INTO `student`(`full_name`, `br_no`, `blood_group`, `birth_date`, `gender`, `phone`, `email`, `class`, `roll`, `section`, `department`, `year`, `f_name`, `f_occupation`, `f_nid`, `f_phone`, `m_name`, `m_occupation`, `m_nid`, `m_phone`, `g_name`, `g_email`, `g_phone`, `g_relationship`, `present_address`, `permanent_address`, `image`) VALUES ('$full_name', '$br_no', '$blood_group', '$birth_date', '$gender', '$phone', '$email', '$class', '$roll', '$section', '$department', '$year', '$f_name', '$f_occupation', '$f_nid', '$f_phone', '$m_name', '$m_occupation', '$m_nid', '$m_phone:', '$g_name', '$g_email', '$g_phone', '$g_relationship', '$present_address', '$permanent_address:', '$image')";
+
+            $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+            if($result){
+                header("Location: student-all.php");
+            }
+            else{
+                echo "<script>Failed to Add Student";
+            }
       }
-        
-      $sql = "INSERT INTO `student`(`full_name`, `br_no`, `blood_group`, `birth_date`, `gender`, `phone`, `email`, `class`, `roll`, `section`, `department`, `year`, `f_name`, `f_occupation`, `f_nid`, `f_phone`, `m_name`, `m_occupation`, `m_nid`, `m_phone`, `g_name`, `g_email`, `g_phone`, `g_relationship`, `present_address`, `permanent_address`, `image`) VALUES ('$full_name', '$br_no', '$blood_group', '$birth_date', '$gender', '$phone', '$email', '$class', '$roll', '$section', '$department', '$year', '$f_name', '$f_occupation', '$f_nid', '$f_phone', '$m_name', '$m_occupation', '$m_nid', '$m_phone:', '$g_name', '$g_email', '$g_phone', '$g_relationship', '$present_address', '$permanent_address:', '$image')";
-
-      // print($sql);
-      // die();
-
-      $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-      if($result){
-          header("Location: student-all.php");
+      else{
+            $pro_pic_error = false;
       }
 
     }
@@ -418,7 +416,7 @@
 
                               <div class="form-group mb-4">
                                   <label>Profile Picture (Max-size: 2MB) : </label>
-                                  <input id="inputImage" name="image" type="file" class="form-control form-control">
+                                  <input id="inputImage" name="image" type="file" class="form-control form-control" accept="image/*">
                               </div>
 
                               <div class="form-group mb-4">

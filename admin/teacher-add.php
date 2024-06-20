@@ -7,16 +7,10 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] < 2*1024*1024 && $_FILES['image']['size'] > 0){
 
             $pro_pic_dir = "uploads/teacher/";
             $pro_pic_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-
-            // Check valid Image or not
-            if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png'])){
-              $pro_pic_error = true;
-              return;
-            }
 
             // Upload Profile Picture
             $pro_pic_name = time().'.'.$pro_pic_ext;
@@ -39,17 +33,13 @@
             
             $sql = "INSERT INTO `teacher`(`name`, `designation`, `phone`, `image`, `email`, `index_number`, `qualification`, `department`, `blood_group`, `birth_date`, `joining_date`, `present_address`, `permanent_address`) VALUES ('$name', '$designation', '$phone', '$image', '$email', '$index_number', '$qualification', '$department', '$blood_group', '$birth_date', '$joining_date', '$present_address', '$permanent_address');";
 
-            // print($sql);
-
-            // die();
-
             $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
             if($result){
                 header("Location: teacher-all.php");
             }
             else{
-                $pro_pic_error = true;
+                echo "<script>Failed to Add Teacher</script>";
             }
 
         }

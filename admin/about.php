@@ -30,7 +30,6 @@
           }
           else{
                 // Uploading Image START
-
                 if (!file_exists($dir_name)) { 
                   mkdir($dir_name, 0755, true); 
                 }
@@ -44,7 +43,6 @@
                 }
 
                 $image = $dir_name.$file_name;
-
                 // Uploading Image END
 
                 // Saving data to DB
@@ -55,12 +53,13 @@
                     header("Location: about.php");
                 }
                 else{
-                    echo "<script>Update Added Failed </script>";
+                    echo "<script>Failed to update</script>";
                 }
           }
 
         }
         else{
+
               $sql = "UPDATE `about` SET `institute_name`='$institute_name', `description`='$description', `image`='$image' WHERE id = 1";
               $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
 
@@ -68,7 +67,7 @@
                   header("Location: about.php");
               }
               else{
-                  echo "<script>Update Added Failed </script>";
+                  echo "<script>Failed to Update </script>";
               }
         }
 

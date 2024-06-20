@@ -15,7 +15,7 @@
 
     if(isset($_POST['update_btn'])){
 
-      // Seed Teacher Data to Database
+      // getting form Data
       $id = $_POST['id'];
       $full_name = $_POST['full_name'];
       $department = $_POST['department'];
@@ -58,35 +58,40 @@
 
           // Check valid Image or not
           if(!in_array($pro_pic_ext, ['jpg', 'jpeg', 'png']) || $_FILES['image']['size'] > 2 * 1024 * 1024){
-            return $pro_pic_error = true;
+                $pro_pic_error = true;
           }
+          else{
+                if (!file_exists($pro_pic_dir)) {
+                    mkdir($pro_pic_dir, 0755, true);
+                }
 
-          if (!file_exists($pro_pic_dir)) {
-              mkdir($pro_pic_dir, 0755, true);
-          }
+                // Upload Profile Picture
+                $pro_pic_name = time().'.'.$pro_pic_ext;
+                move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
 
-          // Upload Profile Picture
-          $pro_pic_name = time().'.'.$pro_pic_ext;
-          move_uploaded_file($_FILES['image']['tmp_name'], $pro_pic_dir.$pro_pic_name);
+                $image = $pro_pic_dir.$pro_pic_name;
 
-          $image = $pro_pic_dir.$pro_pic_name;
-
-          // Delete Old Image
-          if(file_exists($old_image)){
-            unlink($old_image);
+                // Delete Old Image
+                if(file_exists($old_image)){
+                    unlink($old_image);
+                }
           }
         
       }
+      else{
 
-      $update_sql = "UPDATE `student` SET `full_name`='$full_name', `br_no`='$br_no', `blood_group`='$blood_group', `birth_date`='$birth_date', `gender`='$gender', `phone`='$phone', `email`='$email', `class`='$class', `roll`='$roll ', `section`='$section', `department`='$department', `year`='$year', `f_name`='$f_name', `f_occupation`='$f_occupation', `f_nid`='$f_nid', `f_phone`='$f_phone', `m_name`='$m_name', `m_occupation`='$m_occupation', `m_nid`='$m_nid', `m_phone`='$m_phone', `g_name`='$g_name', `g_email`='$g_email', `g_phone`='$g_phone', `g_relationship`='$g_relationship', `present_address`='$present_address', `permanent_address`='$permanent_address', `image`='$image' WHERE `id` = $id";
+            $update_sql = "UPDATE `student` SET `full_name`='$full_name', `br_no`='$br_no', `blood_group`='$blood_group', `birth_date`='$birth_date', `gender`='$gender', `phone`='$phone', `email`='$email', `class`='$class', `roll`='$roll ', `section`='$section', `department`='$department', `year`='$year', `f_name`='$f_name', `f_occupation`='$f_occupation', `f_nid`='$f_nid', `f_phone`='$f_phone', `m_name`='$m_name', `m_occupation`='$m_occupation', `m_nid`='$m_nid', `m_phone`='$m_phone', `g_name`='$g_name', `g_email`='$g_email', `g_phone`='$g_phone', `g_relationship`='$g_relationship', `present_address`='$present_address', `permanent_address`='$permanent_address', `image`='$image' WHERE `id` = $id";
 
-      // print($sql);
-      // die();
 
-      $result = mysqli_query($conn, $update_sql) or die("Query Failed: ". mysqli_error($conn));
+            $result = mysqli_query($conn, $update_sql) or die("Query Failed: ". mysqli_error($conn));
 
-      if($result){
-          header("Location: student-profile.php?id=".$_POST['id']);
+            if($result){
+                header("Location: student-profile.php?id=".$_POST['id']);
+            }
+            else{
+                echo "<script>Failed to Update Slider</script>";
+            }
+
       }
 
     }
@@ -118,7 +123,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
 
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-md-8 grid-margin stretch-card">

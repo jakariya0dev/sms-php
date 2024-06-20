@@ -6,6 +6,6 @@ include_once 'static-data.php';
 $host = 'localhost';
 $user = "root";
 $password = "";
-$db = "sms-php";
+$db = "municipality-badarganj";
 
 $conn = mysqli_connect($host, $user, $password, $db) or die("Database Connection failed: ". mysqli_error($conn));

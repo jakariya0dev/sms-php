@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root";
 $password = ""; 
-$database = "sms-php";
+$database = "municipality-badarganj";
 
 $conn = mysqli_connect($host, $username, $password, $database) or die(mysqli_connect_errno()); 
 

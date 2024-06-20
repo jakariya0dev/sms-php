@@ -6,7 +6,7 @@
     
 ?>
 <section id="teachers">
-    <p class="title">শিক্ষক মণ্ডলী</p>
+    <p class="title">কর্মকর্তা-কর্মচারী</p>
 
     <div class="container bg-white" data-aos="fade-up">
         

@@ -7,7 +7,7 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['image']['tmp_name']) && $_FILES['image']['size'] < 1*1024*1024 ){
+        if($_FILES['image']['size'] < 5*1024*1024 && $_FILES['image']['size'] > 0){
 
             $image_dir = "uploads/gallery/";
             $title = $_POST['title'];
@@ -18,12 +18,6 @@
             }
 
             $image_ext = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
-
-            // Check valid Image or not
-            if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-              $image_error = true;
-              return;
-            }
 
             // Upload Profile Picture
             $image_name = time().'.'.$image_ext;
@@ -103,7 +97,7 @@
 
                         <div class="form-group mb-4">
                             <label>Gallery Image</label>
-                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg">
+                            <input id="inputImage" name="image" type="file" class="form-control form-control-lg" accept="image/*" required>
                         </div>
 
                         <div class="form-group mb-4">

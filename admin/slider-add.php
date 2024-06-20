@@ -7,16 +7,10 @@
 
     if(isset($_POST['submit'])){
 
-        if(file_exists($_FILES['s_image']['tmp_name']) && $_FILES['s_image']['size'] < 2*1024*1024 ){
+        if($_FILES['image']['size'] < 2*1024*1024 && $_FILES['image']['size'] > 0){
 
             $image_dir = "uploads/slider/";
             $image_ext = pathinfo($_FILES["s_image"]["name"], PATHINFO_EXTENSION);
-
-            // Check valid Image or not
-            if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-              $image_error = true;
-              return;
-            }
 
             // Upload Slider Image
             $image_name = time().'.'.$image_ext;
@@ -38,7 +32,10 @@
                 echo "<script>Failed to Add Slider</script>";
             }
 
-          }
+        }
+        else{
+            $image_error = true;
+        }
 
     }
 
@@ -99,7 +96,7 @@
 
                         <div class="form-group mb-4">
                             <label>Notice File</label>
-                            <input id="inputImage" name="s_image" type="file" class="form-control form-control-lg" required>
+                            <input id="inputImage" name="s_image" type="file" class="form-control form-control-lg" accept="image/*" required>
                         </div>
 
                         <div class="form-group mb-4">

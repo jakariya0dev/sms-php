@@ -24,36 +24,41 @@
         $s_image = $_POST['old_image'];
 
         // check, has image? 
-        if(file_exists($_FILES['s_image']['tmp_name']) && $_FILES['s_image']['size'] < 2*1024*1024 ){
+        if($_FILES['s_image']['size'] > 0 ){
 
           $image_dir = "uploads/slider/";
           $image_ext = pathinfo($_FILES["s_image"]["name"], PATHINFO_EXTENSION);
 
           // Check valid Image or not
-          if(!in_array($image_ext, ['jpg', 'jpeg', 'png'])){
-            $image_error = true;
-            return;
+          if(!in_array($image_ext, ['jpg', 'jpeg', 'png']) || $_FILES['s_image']['size'] > 2*1024*1024){
+            
+              $image_error = true;
+          
           }
+          else{
 
-          // Upload Profile Picture
-          $image_name = time().'.'.$image_ext;
-          move_uploaded_file($_FILES['s_image']['tmp_name'], $image_dir.$image_name);
+              // Upload Profile Picture
+              $image_name = time().'.'.$image_ext;
+              move_uploaded_file($_FILES['s_image']['tmp_name'], $image_dir.$image_name);
 
-          $s_image = $image_dir.$image_name;
+              $s_image = $image_dir.$image_name;
 
-          // delete old image
-          unlink($_POST['old_image']);
+              // delete old image
+              unlink($_POST['old_image']);
+              }
 
-        }
-
-        $sql = "UPDATE `slider` SET `title`='$s_title',`subtitle`='$s_subtitle',`image`='$s_image' WHERE id = $s_id";
-        $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
-
-        if($result){
-            header("Location: slider-all.php");
         }
         else{
-            echo "<script>Failed to Update Slider</script>";
+
+              $sql = "UPDATE `slider` SET `title`='$s_title',`subtitle`='$s_subtitle',`image`='$s_image' WHERE id = $s_id";
+              $result = mysqli_query($conn, $sql) or die("Query Failed: ". mysqli_error($conn));
+
+              if($result){
+                  header("Location: slider-all.php");
+              }
+              else{
+                  echo "<script>Failed to Update Slider</script>";
+              }
         }
 
     }
@@ -95,7 +100,7 @@
                     <hr class="mb-5">
 
                     
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="post" enctype="multipart/form-data">
                     
                         <div class="form-group">
                             <label>Slider Title</label>

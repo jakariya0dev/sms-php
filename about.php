@@ -31,7 +31,7 @@
                     <div class="col-md-9">
                         
                         <div>
-                            <p class="title" style="margin-top: 0">আমাদের প্রতিষ্ঠান সম্পর্কে</p>
+                            <p class="title" style="margin-top: 0"><?php echo $ins_name_bn ?></p>
 
                             <div class="row">
                                 <div class="col-md-12">
